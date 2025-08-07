@@ -225,20 +225,39 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                   <div className="space-y-2">
                     <Label className="text-base font-medium flex items-center gap-2">
                       <Clock size={18} />
-                      Preferred Connection Time *
+                      Preferred Connection Time (EST) *
                     </Label>
                     <Select 
                       value={formData.preferredTime} 
                       onValueChange={(value) => handleInputChange('preferredTime', value)}
                     >
                       <SelectTrigger className={`text-lg py-3 ${errors.preferredTime ? 'border-destructive' : ''}`}>
-                        <SelectValue placeholder="Select a time" />
+                        <SelectValue placeholder="Select a time slot" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="morning">Morning (9:00 AM - 12:00 PM)</SelectItem>
-                        <SelectItem value="afternoon">Afternoon (12:00 PM - 5:00 PM)</SelectItem>
-                        <SelectItem value="evening">Evening (5:00 PM - 8:00 PM)</SelectItem>
-                        <SelectItem value="flexible">Flexible - Any time works</SelectItem>
+                      <SelectContent className="max-h-60">
+                        <SelectItem value="7:00 AM">7:00 AM EST</SelectItem>
+                        <SelectItem value="7:30 AM">7:30 AM EST</SelectItem>
+                        <SelectItem value="8:00 AM">8:00 AM EST</SelectItem>
+                        <SelectItem value="8:30 AM">8:30 AM EST</SelectItem>
+                        <SelectItem value="9:00 AM">9:00 AM EST</SelectItem>
+                        <SelectItem value="9:30 AM">9:30 AM EST</SelectItem>
+                        <SelectItem value="10:00 AM">10:00 AM EST</SelectItem>
+                        <SelectItem value="10:30 AM">10:30 AM EST</SelectItem>
+                        <SelectItem value="11:00 AM">11:00 AM EST</SelectItem>
+                        <SelectItem value="11:30 AM">11:30 AM EST</SelectItem>
+                        <SelectItem value="12:00 PM">12:00 PM EST</SelectItem>
+                        <SelectItem value="12:30 PM">12:30 PM EST</SelectItem>
+                        <SelectItem value="1:00 PM">1:00 PM EST</SelectItem>
+                        <SelectItem value="1:30 PM">1:30 PM EST</SelectItem>
+                        <SelectItem value="2:00 PM">2:00 PM EST</SelectItem>
+                        <SelectItem value="2:30 PM">2:30 PM EST</SelectItem>
+                        <SelectItem value="3:00 PM">3:00 PM EST</SelectItem>
+                        <SelectItem value="3:30 PM">3:30 PM EST</SelectItem>
+                        <SelectItem value="4:00 PM">4:00 PM EST</SelectItem>
+                        <SelectItem value="4:30 PM">4:30 PM EST</SelectItem>
+                        <SelectItem value="5:00 PM">5:00 PM EST</SelectItem>
+                        <SelectItem value="5:30 PM">5:30 PM EST</SelectItem>
+                        <SelectItem value="6:00 PM">6:00 PM EST</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.preferredTime && (
