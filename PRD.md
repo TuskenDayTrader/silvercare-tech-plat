@@ -2,7 +2,7 @@
 
 SilverCare Tech is an intelligent web platform that connects senior citizens with their families through accessible technology, addressing loneliness and isolation while fostering emotional connections across generations.
 
-**Experience Qualities**:
+
 1. **Compassionate** - Every interaction should feel warm and caring, designed with empathy for both seniors and their families
 2. **Accessible** - Intuitive navigation with voice commands, large text, and high contrast for seniors and tech novices
 3. **Trustworthy** - Professional yet approachable design that instills confidence in families entrusting their loved ones' connections
@@ -10,9 +10,9 @@ SilverCare Tech is an intelligent web platform that connects senior citizens wit
 **Complexity Level**: Light Application (multiple features with basic state)
 The platform includes form handling, voice navigation, image galleries, and data persistence while maintaining simplicity for accessibility.
 
-## Essential Features
+- **Trigger**: "Sign 
 
-### Homepage Showcase
+### Joy Gallery
 - **Functionality**: Presents mission, problem statement, solution, and impact statistics
 - **Purpose**: Builds trust and educates families about the service value
 - **Trigger**: Landing page visit or voice command "go home"
@@ -26,23 +26,23 @@ The platform includes form handling, voice navigation, image galleries, and data
 - **Progression**: Form display → Voice/manual input → Validation → Confirmation → Data storage
 - **Success criteria**: Complete form submission with validation, confirmation message displayed
 
-### Joy Gallery
+- **Secondary C
 - **Functionality**: Displays curated moments of connection and happiness
-- **Purpose**: Inspires confidence and emotional connection to the service
+  - Primary (Deep Trust Blue #1E3A5F): White text (#FFFFFF) - Ratio 7.8:1 
 - **Trigger**: Gallery navigation or voice command "show moments"
 - **Progression**: Grid display → Image selection → Caption reading → Call to action
 - **Success criteria**: Emotional engagement, increased conversion to registration
 
 ### Voice Navigation
-- **Functionality**: Speech recognition for navigation and form input
+  - Body Text: Inter Regular/18px/relaxed line height (1.6) - maximum
 - **Purpose**: Ensures accessibility for seniors and hands-free operation
-- **Trigger**: Voice activation button or automatic listening
+## Animations
 - **Progression**: Voice detection → Command interpretation → Action execution → Audio feedback
 - **Success criteria**: Accurate command recognition, seamless navigation experience
 
-## Edge Case Handling
+- **Customizations**:
 - **Voice Recognition Failure**: Fallback to traditional navigation with clear visual cues
-- **Form Validation Errors**: Gentle error messages with voice announcements and correction guidance
+- **Mobile**: Single-column layout on mobile with enlarged text (20px body minimum), simplified navi
 - **Slow Network Conditions**: Progressive loading with skeleton states and offline-friendly design
 - **Browser Compatibility**: Graceful degradation for older browsers without Web Speech API
 - **Accessibility Barriers**: Full keyboard navigation and screen reader compatibility
@@ -50,13 +50,13 @@ The platform includes form handling, voice navigation, image galleries, and data
 ## Design Direction
 The design should evoke feelings of warmth, trust, and technological sophistication while remaining approachable and accessible - think Apple's design sensibility applied to healthcare, with generous spacing and calming visual rhythm that reduces anxiety for both seniors and their families.
 
-## Color Selection
+
 Complementary (opposite colors) - Using calming blues paired with warm silver accents to create visual interest while maintaining the healthcare trust factor and emotional warmth.
 
 - **Primary Color**: Deep Trust Blue (oklch(0.45 0.15 230)) - Communicates reliability and professional healthcare expertise
 - **Secondary Colors**: Soft Silver (oklch(0.85 0.02 220)) for backgrounds and Warm Gray (oklch(0.65 0.01 200)) for supporting text
 - **Accent Color**: Caring Gold (oklch(0.75 0.12 80)) - Warm highlight for call-to-action buttons and important interactions
-- **Foreground/Background Pairings**: 
+
   - Background (Soft Silver #F8FAFB): Deep Blue text (#1E3A5F) - Ratio 8.2:1 ✓
   - Primary (Deep Trust Blue #1E3A5F): White text (#FFFFFF) - Ratio 7.8:1 ✓
   - Secondary (Soft Silver #D8E2E8): Deep Blue text (#1E3A5F) - Ratio 6.1:1 ✓
@@ -74,7 +74,7 @@ Typography should feel approachable yet professional, with excellent readability
   - Button Text: Inter SemiBold/16px/wide letter spacing - clear action labels
   - Form Labels: Inter Medium/16px/normal spacing - clear field identification
 
-## Animations
+
 Subtle and purposeful animations that guide attention and provide feedback without overwhelming senior users - motion should feel gentle and supportive rather than flashy or distracting.
 
 - **Purposeful Meaning**: Gentle fades and slides communicate care and thoughtfulness, while hover states provide reassuring feedback that builds confidence in digital interactions
