@@ -12,14 +12,22 @@ type Page = 'home' | 'register' | 'gallery' | 'learn-more'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
 
-  // Safe navigation handler with validation
+  // Safe navigation handler with validation and error boundary
   const handleNavigation = (page: Page) => {
-    const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more']
-    if (validPages.includes(page)) {
-      setCurrentPage(page)
-    } else {
-      console.warn(`Invalid navigation attempt to: ${page}`)
-      setCurrentPage('home') // Fallback to home
+    try {
+      const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more']
+      if (validPages.includes(page)) {
+        setCurrentPage(page)
+        // Scroll to top when navigating to a new page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        console.warn(`Invalid navigation attempt to: ${page}`)
+        setCurrentPage('home') // Fallback to home
+      }
+    } catch (error) {
+      console.error('Navigation error:', error)
+      // Extra safety - fallback to home on any error
+      setCurrentPage('home')
     }
   }
 
@@ -39,9 +47,12 @@ function App() {
         window.scrollBy({ top: 300, behavior: 'smooth' })
       } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top')) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        console.log(`Unrecognized voice command: ${command}`)
       }
     } catch (error) {
-      console.error('Voice command error:', error)
+      console.error('Voice command processing error:', error)
+      // Don't crash the app on voice command errors
     }
   }
 
