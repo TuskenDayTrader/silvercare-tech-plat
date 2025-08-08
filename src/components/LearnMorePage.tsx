@@ -1,9 +1,8 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowLeft, Heart, Users, Lightbulb, ChartBar } from '@phosphor-icons/react'
+import Logo from '@/components/Logo'
 import Logo from '@/components/Logo'
 
-interface LearnMorePageProps {
   onNavigate: (page: string) => void
 }
 
