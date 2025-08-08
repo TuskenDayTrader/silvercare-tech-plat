@@ -4,8 +4,9 @@ import VoiceControl from '@/components/VoiceControl'
 import HomePage from '@/components/HomePage'
 import RegistrationPage from '@/components/RegistrationPage'
 import GalleryPage from '@/components/GalleryPage'
+import LearnMorePage from '@/components/LearnMorePage'
 
-type Page = 'home' | 'register' | 'gallery'
+type Page = 'home' | 'register' | 'gallery' | 'learn-more'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
@@ -19,6 +20,8 @@ function App() {
       setCurrentPage('register')
     } else if (lowerCommand.includes('gallery') || lowerCommand.includes('moments') || lowerCommand.includes('photos')) {
       setCurrentPage('gallery')
+    } else if (lowerCommand.includes('learn more') || lowerCommand.includes('information') || lowerCommand.includes('research')) {
+      setCurrentPage('learn-more')
     } else if (lowerCommand.includes('scroll down') || lowerCommand.includes('scroll')) {
       window.scrollBy({ top: 300, behavior: 'smooth' })
     } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top')) {
@@ -34,6 +37,8 @@ function App() {
         return <RegistrationPage onNavigate={setCurrentPage} />
       case 'gallery':
         return <GalleryPage onNavigate={setCurrentPage} />
+      case 'learn-more':
+        return <LearnMorePage onNavigate={setCurrentPage} />
       default:
         return <HomePage onNavigate={setCurrentPage} />
     }

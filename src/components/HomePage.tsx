@@ -101,6 +101,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               See Happy Moments
             </Button>
+            <Button 
+              size="lg" 
+              variant="secondary"
+              className="text-lg px-8 py-6"
+              onClick={() => onNavigate('learn-more')}
+            >
+              Learn More About Our Research
+            </Button>
           </div>
         </section>
       </main>
