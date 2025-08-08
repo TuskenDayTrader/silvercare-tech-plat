@@ -1,8 +1,15 @@
 import React from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ArrowLeft, Users, Lightbulb, ChartBar } from '@phosphor-icons/react'
 import Logo from '@/components/Logo'
-interface LearnMorePageProps {
 
 interface LearnMorePageProps {
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+}
+
+const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
+  return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
       <header className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
@@ -12,11 +19,6 @@ interface LearnMorePageProps {
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2"
           >
-            <ArrowLeft size={20} />
-            Back to Home
-          </Button>
-        </div>
-          >der>
             <ArrowLeft size={20} />
             Back to Home
           </Button>
@@ -33,6 +35,11 @@ interface LearnMorePageProps {
           </p>
         </section>
 
+        {/* The Impact of Connection */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="text-2xl text-primary flex items-center gap-3">
+              <ChartBar size={28} className="text-accent" />
               The Impact of Connection
             </CardTitle>
           </CardHeader>
@@ -49,7 +56,7 @@ interface LearnMorePageProps {
                 <div className="p-4 bg-background/50 rounded-lg">
                   <p className="text-muted-foreground">88% of seniors in technology programs report improved social connectedness</p>
                 </div>
-                  <l
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -78,7 +85,7 @@ interface LearnMorePageProps {
                   <li>Reduced social activity opportunities</li>
                   <li>Lack of perceived friendliness from caregivers</li>
                 </ul>
-                    
+              </div>
 
               <p className="text-muted-foreground leading-relaxed">
                 This isolation can result in emotional distress, depression, and a diminished quality of life. The emotional toll is profound, with seniors experiencing feelings of sadness, anxiety, and a sense of being forgotten. Research from the CDC highlights that loneliness poses risks comparable to major health factors like smoking or high blood pressure.
@@ -87,7 +94,7 @@ interface LearnMorePageProps {
               <div className="bg-destructive/5 border-l-4 border-destructive p-4 my-6">
                 <p className="text-sm text-muted-foreground">
                   <strong>Source:</strong> National Poll on Healthy Aging (2023) found that 34% of older adults reported feeling isolated, and 37% reported lacking companionship.
-
+                </p>
               </div>
             </div>
           </CardContent>
@@ -116,8 +123,8 @@ interface LearnMorePageProps {
                     <li>• Smart speakers for conversation</li>
                     <li>• Social media platforms</li>
                     <li>• Telepresence robots</li>
-
-                The CO
+                  </ul>
+                </div>
                 <div className="bg-primary/5 p-6 rounded-lg">
                   <h4 className="font-semibold text-primary mb-3">Proven Benefits:</h4>
                   <ul className="space-y-2 text-muted-foreground">
@@ -133,7 +140,7 @@ interface LearnMorePageProps {
               <div className="bg-accent/5 border-l-4 border-accent p-4 my-6">
                 <p className="text-sm text-muted-foreground">
                   <strong>Research Finding:</strong> A systematic review of 324 studies with 66,565 participants found that 83% of reviews reported positive effects of technology on loneliness, with video conferencing showing particular effectiveness.
-              </Butt
+                </p>
               </div>
             </div>
           </CardContent>
@@ -157,7 +164,7 @@ interface LearnMorePageProps {
                 <div className="text-center p-6 bg-accent/10 rounded-lg">
                   <div className="text-3xl font-bold text-accent mb-2">1.56</div>
                   <div className="text-sm text-muted-foreground">Additional "healthy days" per month reported by seniors in technology programs</div>
-
+                </div>
                 <div className="text-center p-6 bg-primary/10 rounded-lg">
                   <div className="text-3xl font-bold text-primary mb-2">0.147</div>
                   <div className="text-sm text-muted-foreground">Point decrease in loneliness scores for each increase in internet use frequency</div>
@@ -166,7 +173,7 @@ interface LearnMorePageProps {
                   <div className="text-3xl font-bold text-secondary-foreground mb-2">4.0/5</div>
                   <div className="text-sm text-muted-foreground">Median agreement that internet makes it easier to stay connected with family</div>
                 </div>
-
+              </div>
 
               <div className="bg-secondary/20 p-6 rounded-lg my-6">
                 <h4 className="font-semibold text-primary mb-3">Key Research Insights:</h4>
@@ -200,8 +207,8 @@ interface LearnMorePageProps {
               >
                 Start Connecting Today
               </Button>
-
-
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>
