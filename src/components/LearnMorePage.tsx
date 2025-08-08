@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Heart, Users, Phone, Video, Home, UserPlus, ArrowLeft, Shield, Lightbulb } from '@phosphor-icons/react'
 
 interface LearnMorePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void;
 }
 
 const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
