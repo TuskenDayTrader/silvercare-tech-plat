@@ -11,7 +11,7 @@ import { useKV } from '@github/spark/hooks'
 import Logo from '@/components/Logo'
 
 interface RegistrationPageProps {
-  onNavigate: (page: string) => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
 }
 
 interface RegistrationData {

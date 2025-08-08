@@ -5,10 +5,19 @@ import { ArrowRight, Users, Heart, Phone } from '@phosphor-icons/react'
 import Logo from '@/components/Logo'
 
 interface HomePageProps {
-  onNavigate: (page: string) => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
+    try {
+      onNavigate(page)
+    } catch (error) {
+      console.error('Navigation error:', error)
+      // Fallback - stay on current page
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
       <header className="container mx-auto px-6 py-8">
@@ -27,7 +36,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <Button 
             size="lg" 
             className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground"
-            onClick={() => onNavigate('register')}
+            onClick={() => handleNavigation('register')}
           >
             Connect Your Loved One Today
             <ArrowRight size={20} className="ml-2" />
@@ -88,7 +97,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 bg-primary hover:bg-primary/90"
-              onClick={() => onNavigate('register')}
+              onClick={() => handleNavigation('register')}
             >
               Start Connecting Today
               <ArrowRight size={20} className="ml-2" />
@@ -97,7 +106,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               size="lg" 
               variant="outline"
               className="text-lg px-8 py-6 border-2"
-              onClick={() => onNavigate('gallery')}
+              onClick={() => handleNavigation('gallery')}
             >
               See Happy Moments
             </Button>
@@ -105,7 +114,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               size="lg" 
               variant="secondary"
               className="text-lg px-8 py-6"
-              onClick={() => onNavigate('learn-more')}
+              onClick={() => handleNavigation('learn-more')}
             >
               Learn More About Our Research
             </Button>

@@ -5,7 +5,7 @@ import { ArrowLeft, Heart, Users, VideoCamera, Phone } from '@phosphor-icons/rea
 import Logo from '@/components/Logo'
 
 interface GalleryPageProps {
-  onNavigate: (page: string) => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
 }
 
 const galleryImages = [

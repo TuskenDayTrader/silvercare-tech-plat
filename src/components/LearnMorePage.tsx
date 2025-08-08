@@ -8,6 +8,20 @@ interface LearnMorePageProps {
 }
 
 function LearnMorePage({ onNavigate }: LearnMorePageProps) {
+  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
+    try {
+      onNavigate(page)
+    } catch (error) {
+      console.error('Navigation error:', error)
+      // Fallback - stay on current page
+    }
+  }
+
+  // Add scroll to top when component mounts to prevent scroll issues
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       <header className="bg-card border-b border-border">
@@ -165,7 +179,7 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
                 Join families worldwide who are using technology to strengthen bonds and create lasting memories with their loved ones.
               </p>
               <Button 
-                onClick={() => onNavigate('register')} 
+                onClick={() => handleNavigation('register')} 
                 className="bg-accent hover:bg-accent/90 text-accent-foreground"
                 size="lg"
               >

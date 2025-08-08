@@ -13,56 +13,78 @@ const VoiceControl: React.FC<VoiceControlProps> = ({ onCommand, isActive = true 
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
 
   useEffect(() => {
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-      const recognitionInstance = new SpeechRecognition()
-      
-      recognitionInstance.continuous = false
-      recognitionInstance.interimResults = false
-      recognitionInstance.lang = 'en-US'
+    try {
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+        const recognitionInstance = new SpeechRecognition()
+        
+        recognitionInstance.continuous = false
+        recognitionInstance.interimResults = false
+        recognitionInstance.lang = 'en-US'
 
-      recognitionInstance.onstart = () => {
-        setIsListening(true)
-        toast.info('Listening... Speak your command')
-      }
-
-      recognitionInstance.onresult = (event) => {
-        const transcript = event.results[0][0].transcript.toLowerCase().trim()
-        onCommand(transcript)
-        toast.success(`Command heard: "${transcript}"`)
-      }
-
-      recognitionInstance.onerror = (event) => {
-        setIsListening(false)
-        if (event.error !== 'aborted') {
-          toast.error('Voice recognition error. Please try again.')
+        recognitionInstance.onstart = () => {
+          setIsListening(true)
+          toast.info('Listening... Speak your command')
         }
-      }
 
-      recognitionInstance.onend = () => {
-        setIsListening(false)
-      }
+        recognitionInstance.onresult = (event) => {
+          try {
+            const transcript = event.results[0][0].transcript.toLowerCase().trim()
+            if (transcript && onCommand) {
+              onCommand(transcript)
+              toast.success(`Command heard: "${transcript}"`)
+            }
+          } catch (error) {
+            console.error('Speech recognition result error:', error)
+            toast.error('Error processing voice command')
+          }
+        }
 
-      setRecognition(recognitionInstance)
+        recognitionInstance.onerror = (event) => {
+          setIsListening(false)
+          if (event.error !== 'aborted') {
+            console.error('Speech recognition error:', event.error)
+            toast.error('Voice recognition error. Please try again.')
+          }
+        }
+
+        recognitionInstance.onend = () => {
+          setIsListening(false)
+        }
+
+        setRecognition(recognitionInstance)
+      }
+    } catch (error) {
+      console.error('Voice recognition initialization error:', error)
     }
 
     return () => {
-      if (recognition) {
-        recognition.abort()
+      try {
+        if (recognition) {
+          recognition.abort()
+        }
+      } catch (error) {
+        console.error('Voice recognition cleanup error:', error)
       }
     }
   }, [onCommand])
 
   const toggleListening = () => {
-    if (!recognition) {
-      toast.error('Voice recognition not supported in this browser')
-      return
-    }
+    try {
+      if (!recognition) {
+        toast.error('Voice recognition not supported in this browser')
+        return
+      }
 
-    if (isListening) {
-      recognition.stop()
-    } else {
-      recognition.start()
+      if (isListening) {
+        recognition.stop()
+      } else {
+        recognition.start()
+      }
+    } catch (error) {
+      console.error('Voice recognition toggle error:', error)
+      toast.error('Voice recognition unavailable')
+      setIsListening(false)
     }
   }
 
