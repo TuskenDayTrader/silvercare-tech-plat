@@ -10,20 +10,15 @@ interface LearnMorePageProps {
 function LearnMorePage({ onNavigate }: LearnMorePageProps) {
   const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
     try {
-      onNavigate(page)
+
     } catch (error) {
       console.error('Navigation error:', error)
       // Fallback - stay on current page
     }
   }
 
-  // Add scroll to top when component mounts to prevent scroll issues
-  React.useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
-    <div className="min-h-screen bg-background">
+              <div className="relative">
       <header className="bg-card border-b border-border">
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-center">
@@ -31,7 +26,7 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
               <div className="relative">
                 <Heart size={32} className="text-primary absolute top-0 left-0" />
                 <Heart size={32} className="text-accent ml-4" />
-              </div>
+
               <div className="text-center">
                 <h1 className="text-2xl font-bold text-primary">SilverCare Tech</h1>
                 <p className="text-sm text-muted-foreground">Connecting Generations, One Call at a Time</p>
@@ -43,13 +38,13 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
 
       <main className="container mx-auto px-6 py-12">
         {/* Understanding Senior Loneliness */}
-        <Card className="mb-12">
+                  <strong>Key St
           <CardHeader>
             <CardTitle className="text-3xl text-primary flex items-center gap-3">
               <Heart size={32} className="text-destructive" />
-              Understanding Senior Loneliness
+                  <div className="text-3xl fo
             </CardTitle>
-          </CardHeader>
+                <div cl
           <CardContent>
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed mb-6">
@@ -57,13 +52,13 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
               </p>
 
               <div className="bg-destructive/5 border-l-4 border-destructive p-4 my-6">
-                <p className="text-sm text-muted-foreground">
+
                   <strong>Key Statistic:</strong> The COVID-19 pandemic highlighted this vulnerability, with social restrictions intensifying isolation and underscoring the need for innovative solutions. Research shows that loneliness poses a risk comparable to major health factors like smoking or high blood pressure.
-                </p>
+          <CardHeade
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 my-8">
-                <div className="text-center p-6 bg-destructive/10 rounded-lg">
+          <CardContent>
                   <div className="text-3xl font-bold text-destructive mb-2">40%</div>
                   <div className="text-sm text-muted-foreground">Of older adults occasionally or frequently feel lonely</div>
                 </div>
@@ -81,15 +76,15 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
         </Card>
 
         {/* The Role of Technology */}
-        <Card className="mb-12">
+
           <CardHeader>
             <CardTitle className="text-3xl text-primary flex items-center gap-3">
               <Users size={32} className="text-secondary-foreground" />
               How Technology Bridges the Gap
             </CardTitle>
-          </CardHeader>
+
           <CardContent>
-            <div className="prose prose-lg max-w-none">
+          <CardHeader>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Modern telecommunications—including video calls, instant messaging, and smartphones—offer powerful ways to bridge social and spatial barriers. These tools enable affordable and accessible communication that can significantly reduce loneliness and improve mental health outcomes.
               </p>
@@ -99,21 +94,21 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
                   <h4 className="font-semibold text-accent mb-3">Most Effective Technologies:</h4>
                   <ul className="space-y-2 text-muted-foreground">
                     <li>• Video calling platforms</li>
-                    <li>• Text messaging and email</li>
+                  <div className="text-sm text-muted-fo
                     <li>• Smart speakers for conversation</li>
-                    <li>• Social media platforms</li>
+                  <div className="text-3xl font-bold 
                     <li>• Telepresence robots</li>
-                  </ul>
+                <div cl
                 </div>
                 <div className="bg-primary/5 p-6 rounded-lg">
                   <h4 className="font-semibold text-primary mb-3">Proven Benefits:</h4>
                   <ul className="space-y-2 text-muted-foreground">
                     <li>• Better self-rated health</li>
-                    <li>• Higher subjective well-being</li>
+                  <li><strong>Autonomy and Independence:</s
                     <li>• Lower depression rates</li>
-                    <li>• Increased sense of autonomy</li>
+                </ul>
                   </ul>
-                </div>
+              <p class
               </div>
 
               <div className="bg-accent/5 border-l-4 border-accent p-4 my-6">
@@ -121,38 +116,38 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
                   <strong>Research Finding:</strong> A systematic review of 324 studies with 66,565 participants found that 83% of reviews reported positive effects of technology on loneliness, with video conferencing showing particular effectiveness.
                 </p>
               </div>
-            </div>
+              <p c
           </CardContent>
-        </Card>
+              <
 
-        {/* Quality of Life Improvements */}
+                size="lg"
         <Card className="mb-12">
-          <CardHeader>
+              </Button
             <CardTitle className="text-3xl text-primary flex items-center gap-3">
               <ChartBar size={32} className="text-secondary-foreground" />
               Measurable Quality of Life Improvements
-            </CardTitle>
+  )
           </CardHeader>
-          <CardContent>
+export default LearnMor
             <div className="prose prose-lg max-w-none">
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Technology training and regular digital communication create measurable improvements in seniors' daily lives. Studies show that seniors who engage with technology report better health outcomes and increased social satisfaction.
-              </p>
 
-              <div className="grid md:grid-cols-3 gap-6 my-8">
+                Technology training and regular digital communication create measurable improvements in seniors' daily lives. Studies show that seniors who engage with technology report better health outcomes and increased social satisfaction.
+
+
+
                 <div className="text-center p-6 bg-accent/10 rounded-lg">
-                  <div className="text-3xl font-bold text-accent mb-2">1.56</div>
+
                   <div className="text-sm text-muted-foreground">Additional "healthy days" per month reported by seniors in technology programs</div>
-                </div>
+
                 <div className="text-center p-6 bg-primary/10 rounded-lg">
                   <div className="text-3xl font-bold text-primary mb-2">0.147</div>
                   <div className="text-sm text-muted-foreground">Point decrease in loneliness scores for each increase in internet use frequency</div>
-                </div>
+
                 <div className="text-center p-6 bg-secondary/30 rounded-lg">
                   <div className="text-3xl font-bold text-secondary-foreground mb-2">4.0/5</div>
                   <div className="text-sm text-muted-foreground">Median agreement that internet makes it easier to stay connected with family</div>
                 </div>
-              </div>
+
 
               <div className="bg-secondary/20 p-6 rounded-lg my-6">
                 <h4 className="font-semibold text-primary mb-3">Key Research Insights:</h4>
@@ -163,34 +158,33 @@ function LearnMorePage({ onNavigate }: LearnMorePageProps) {
                 </ul>
               </div>
 
-              <p className="text-muted-foreground leading-relaxed">
-                The COVID-19 pandemic highlighted both the vulnerability of seniors to isolation and the critical importance of digital connection tools. During lockdowns, technology became a lifeline, with smart speakers described by users as providing a "conversational outlet" that boosted confidence and sociability without requiring face-to-face interaction.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <Card className="inline-block p-8 bg-gradient-to-r from-primary/5 to-accent/5">
-            <CardContent className="space-y-4">
-              <h3 className="text-2xl font-semibold text-primary">Ready to Make a Difference?</h3>
-              <p className="text-muted-foreground max-w-md">
-                Join families worldwide who are using technology to strengthen bonds and create lasting memories with their loved ones.
-              </p>
-              <Button 
-                onClick={() => handleNavigation('register')} 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground"
-                size="lg"
-              >
-                Start Connecting Today
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </main>
-    </div>
-  )
-}
 
-export default LearnMorePage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
