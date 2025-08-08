@@ -1,24 +1,24 @@
 import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
 import { Heart, Users, ChartBar, House, UserPlus } from '@phosphor-icons/react'
 
 interface LearnMorePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
 }
 
 const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
   const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
     try {
-      onNavigate(page)
+  }
     } catch (error) {
       console.error('Navigation error:', error)
       // Fallback to home on error
       onNavigate('home')
     }
-  }
+   
 
-  return (
+          
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-card shadow-sm border-b">
@@ -26,7 +26,7 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
           <div className="flex items-center gap-3 mb-2">
             <Heart size={32} className="text-primary" />
             <Heart size={28} className="text-accent -ml-4" />
-          </div>
+            <Car
           <h1 className="text-2xl font-bold text-primary">
             SilverCare Tech Research & Insights
           </h1>
@@ -44,7 +44,7 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
               <Heart size={32} className="text-destructive" />
               Understanding Senior Loneliness
             </CardTitle>
-          </CardHeader>
+                  <div 
           <CardContent>
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed mb-6">
@@ -52,7 +52,7 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
               </p>
 
               <div className="bg-destructive/5 border-l-4 border-destructive p-4 my-6">
-                <p className="text-sm text-muted-foreground">
+              <Users size={32} className="text-secondary-fore
                   <strong>Key Statistic:</strong> The COVID-19 pandemic highlighted this vulnerability, with social restrictions intensifying isolation and underscoring the need for innovative solutions. Research shows that loneliness poses a risk comparable to major health factors like smoking or high blood pressure.
                 </p>
               </div>
@@ -76,15 +76,15 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
         </Card>
 
         {/* The Role of Technology */}
-        <Card className="shadow-lg">
+            </div>
           <CardHeader>
             <CardTitle className="text-3xl text-primary flex items-center gap-3">
               <Users size={32} className="text-secondary-foreground" />
               How Technology Bridges the Gap
             </CardTitle>
-          </CardHeader>
+              Measurabl
           <CardContent>
-            <div className="prose prose-lg max-w-none">
+          <CardContent>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Modern telecommunications—including video calls, instant messaging, and smartphones—offer powerful ways to bridge social and spatial barriers. These tools enable affordable and accessible communication that can significantly reduce loneliness and improve mental health outcomes.
               </p>
@@ -96,19 +96,19 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
                     <li>• Video calling platforms</li>
                     <li>• Instant messaging and texting</li>
                     <li>• Smart speakers for conversation</li>
-                    <li>• Telepresence robots</li>
-                  </ul>
                 </div>
+                  </ul>
+              <div cla
                 <div className="bg-primary/5 p-6 rounded-lg">
                   <h4 className="font-semibold text-primary mb-3">Proven Benefits:</h4>
                   <ul className="space-y-2 text-muted-foreground">
                     <li>• Better self-rated health</li>
                     <li>• Higher subjective well-being</li>
-                    <li>• Lower depression rates</li>
+          </CardContent>
                     <li>• Enhanced quality of life</li>
-                  </ul>
+        {/* Call to Act
                 </div>
-              </div>
+            Ready to
 
               <div className="bg-accent/5 border-l-4 border-accent p-4 my-6">
                 <p className="text-sm text-muted-foreground">
@@ -116,29 +116,29 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
                 </p>
               </div>
             </div>
-          </CardContent>
+            >
         </Card>
 
         {/* Benefits and Impact */}
-        <Card className="shadow-lg">
+              size="lg"
           <CardHeader>
-            <CardTitle className="text-3xl text-primary flex items-center gap-3">
+              <UserPlus size={20} className="mr-2" />
               <ChartBar size={32} className="text-secondary-foreground" />
               Measurable Benefits for Seniors and Families
             </CardTitle>
-          </CardHeader>
+    </div>
           <CardContent>
-            <div className="prose prose-lg max-w-none">
+
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Technology training and regular digital communication create measurable improvements in seniors' daily lives. Studies show that seniors who engage with technology report better health outcomes and increased social satisfaction.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 my-8">
-                <div className="text-center p-6 bg-accent/10 rounded-lg">
+
                   <div className="text-3xl font-bold text-accent mb-2">1.56</div>
                   <div className="text-sm text-muted-foreground">Additional "healthy days" per month reported by seniors in technology programs</div>
                 </div>
-                <div className="text-center p-6 bg-primary/10 rounded-lg">
+
                   <div className="text-3xl font-bold text-primary mb-2">0.147</div>
                   <div className="text-sm text-muted-foreground">Point decrease in loneliness scores for each increase in internet use frequency</div>
                 </div>
@@ -146,7 +146,7 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
                   <div className="text-3xl font-bold text-secondary-foreground mb-2">4.0/5</div>
                   <div className="text-sm text-muted-foreground">Median agreement that internet makes it easier to stay connected with family</div>
                 </div>
-              </div>
+
 
               <div className="bg-secondary/20 p-6 rounded-lg my-6">
                 <h4 className="font-semibold text-primary mb-3">Key Research Insights:</h4>
@@ -154,44 +154,43 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
                   <li><strong>Autonomy and Independence:</strong> Learning to use apps and digital tools promotes a sense of autonomy and encourages social interaction during training sessions.</li>
                   <li><strong>Emotional Connection:</strong> Virtual reality and telepresence technologies allow seniors to participate in activities and experiences that would otherwise be impossible due to mobility limitations.</li>
                   <li><strong>Proactive Support:</strong> Smart home technologies and wearables can detect patterns that predict loneliness, offering support before isolation becomes severe.</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* Call to Action */}
+              </div>
+
+          </CardContent>
+
+
+
         <div className="text-center py-12">
           <h3 className="text-2xl font-bold text-primary mb-6">
             Ready to Make a Difference?
-          </h3>
+
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Join thousands of families who are already using technology to bridge the gap and create meaningful connections with their loved ones.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
+
               onClick={() => handleNavigation('home')} 
-              variant="outline" 
+
               size="lg"
-              className="w-full sm:w-auto"
+
             >
               <House size={20} className="mr-2" />
               Back to Home
             </Button>
             <Button 
-              onClick={() => handleNavigation('register')} 
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              <UserPlus size={20} className="mr-2" />
-              Sign Up to Connect Your Loved One
-            </Button>
-          </div>
-        </div>
-      </main>
-    </div>
-  )
-}
 
-export default LearnMorePage
+              size="lg"
+
+            >
+
+              Sign Up to Connect Your Loved One
+
+          </div>
+
+      </main>
+
+  )
+
+
