@@ -1,13 +1,8 @@
 import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Logo from '@/components/Logo'
+interface LearnMorePageProps {
 
 interface LearnMorePageProps {
-  onNavigate: (page: string) => void
-}
-
-const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
-  return (
     <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
       <header className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between">
@@ -17,6 +12,11 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2"
           >
+            <ArrowLeft size={20} />
+            Back to Home
+          </Button>
+        </div>
+          >der>
             <ArrowLeft size={20} />
             Back to Home
           </Button>
@@ -33,11 +33,6 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
           </p>
         </section>
 
-        {/* Executive Summary */}
-        <Card className="mb-12 border-accent/20">
-          <CardHeader>
-            <CardTitle className="text-2xl text-primary flex items-center gap-3">
-              <Heart size={28} className="text-accent" />
               The Impact of Connection
             </CardTitle>
           </CardHeader>
