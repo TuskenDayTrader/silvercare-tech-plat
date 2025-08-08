@@ -69,8 +69,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-primary">The Impact</h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Reduces isolation, strengthens family bonds, and taps into the growing $10B+ 
-                senior care technology market while creating priceless moments.
+                Reduces isolation, strengthens family bonds, and creates priceless, heartwarming 
+                moments for seniors and their loved ones.
               </p>
             </CardContent>
           </Card>
