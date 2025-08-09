@@ -83,7 +83,6 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate, languag
     setIsSubmitted(true)
     toast.success(t.confirmationMessage)
   }
-  }
 
   const handleInputChange = (field: keyof RegistrationData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
