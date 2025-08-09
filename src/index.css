@@ -8,57 +8,57 @@
 }
 
 :root {
-  /* Warm sunny gradient background for happiness */
-  --background: linear-gradient(135deg, #fff8e1 0%, #fff3c4 25%, #ffecb3 50%, #ffe082 75%, #ffd54f 100%);
-  --background-solid: oklch(0.96 0.04 85);
-  --foreground: oklch(0.16 0.02 240);
+  /* Pure white fluffy cloud background */
+  --background: linear-gradient(135deg, #ffffff 0%, #f8faff 25%, #f0f6ff 50%, #e8f2ff 75%, #e0efff 100%);
+  --background-solid: oklch(0.99 0.005 220);
+  --foreground: oklch(0.12 0.02 240);
   
-  /* Warm cream card surfaces with subtle golden tint */
-  --card: linear-gradient(145deg, #fffde7 0%, #fff9c4 50%, #fff176 100%);
-  --card-solid: oklch(0.97 0.03 85);
-  --card-foreground: oklch(0.19 0.02 240);
+  /* Soft white pillow card surfaces */
+  --card: linear-gradient(145deg, #ffffff 0%, #f8faff 50%, #f0f6ff 100%);
+  --card-solid: oklch(0.99 0.003 220);
+  --card-foreground: oklch(0.15 0.02 240);
   
-  --popover: oklch(0.98 0.03 85);
-  --popover-foreground: oklch(0.19 0.02 240);
+  --popover: oklch(0.99 0.003 220);
+  --popover-foreground: oklch(0.15 0.02 240);
   
-  /* Premium silver primary with depth */
-  --primary: linear-gradient(145deg, #8e9aaf 0%, #6c757d 50%, #495057 100%);
-  --primary-solid: oklch(0.55 0.01 240);
-  --primary-foreground: oklch(0.98 0.005 240);
+  /* Premium soft blue primary - sky like */
+  --primary: linear-gradient(145deg, #4a90e2 0%, #357abd 50%, #2563eb 100%);
+  --primary-solid: oklch(0.58 0.15 240);
+  --primary-foreground: oklch(0.99 0.005 240);
   
-  /* Warm secondary with golden cream tint */
-  --secondary: linear-gradient(145deg, #fff8e1 0%, #ffecb3 50%, #ffe082 100%);
-  --secondary-solid: oklch(0.91 0.04 85);
-  --secondary-foreground: oklch(0.22 0.02 240);
+  /* Soft white secondary with subtle blue tint */
+  --secondary: linear-gradient(145deg, #ffffff 0%, #f8faff 50%, #f0f6ff 100%);
+  --secondary-solid: oklch(0.97 0.005 220);
+  --secondary-foreground: oklch(0.18 0.02 240);
   
-  /* Warm muted tones */
-  --muted: oklch(0.94 0.03 80);
-  --muted-foreground: oklch(0.44 0.01 240);
+  /* Soft blue muted tones */
+  --muted: oklch(0.96 0.005 220);
+  --muted-foreground: oklch(0.40 0.02 240);
   
-  /* Warm golden accent inspired by the assets */
-  --accent: linear-gradient(145deg, #ffd93d 0%, #ff9f43 50%, #ee5a24 100%);
-  --accent-solid: oklch(0.75 0.12 70);
-  --accent-foreground: oklch(0.98 0.005 240);
+  /* Gentle light blue accent */
+  --accent: linear-gradient(145deg, #87ceeb 0%, #6bb6ff 50%, #4a90e2 100%);
+  --accent-solid: oklch(0.75 0.08 240);
+  --accent-foreground: oklch(0.99 0.005 240);
   
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.01 220);
   
-  /* Warm golden borders */
-  --border: oklch(0.87 0.03 80);
-  --input: oklch(0.92 0.03 85);
-  --ring: oklch(0.55 0.08 70);
+  /* Soft blue borders */
+  --border: oklch(0.90 0.01 220);
+  --input: oklch(0.95 0.005 220);
+  --ring: oklch(0.58 0.15 240);
   
-  /* Increased radius for premium feel */
-  --radius: 1rem;
+  /* Soft rounded radius for cloud-like feel */
+  --radius: 1.2rem;
   
-  /* Warm golden text effects */
-  --text-shadow-silver: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(255,248,225,0.8);
-  --text-shadow-gold: 0 2px 4px rgba(238, 90, 36, 0.3), 0 1px 2px rgba(255, 217, 61, 0.5);
+  /* Soft blue text effects with subtle shadows */
+  --text-shadow-silver: 0 2px 4px rgba(0,0,0,0.15), 0 1px 2px rgba(255,255,255,0.9);
+  --text-shadow-blue: 0 2px 4px rgba(37, 99, 235, 0.2), 0 1px 2px rgba(255, 255, 255, 0.8);
   
-  /* Box shadows for warm depth */
-  --shadow-silver: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 248, 225, 0.3);
-  --shadow-gold: 0 8px 25px -5px rgba(238, 90, 36, 0.3), 0 4px 6px -2px rgba(255, 217, 61, 0.2);
-  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* Box shadows for fluffy cloud depth */
+  --shadow-silver: 0 6px 12px -1px rgba(0, 0, 0, 0.08), 0 4px 8px -1px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --shadow-blue: 0 8px 25px -5px rgba(37, 99, 235, 0.15), 0 4px 12px -2px rgba(74, 144, 226, 0.1);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 @theme {
@@ -92,72 +92,102 @@
 body {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
+  font-weight: 500;
   line-height: 1.6;
   background: var(--background);
   min-height: 100vh;
   position: relative;
+  color: var(--foreground);
 }
 
-/* Premium warm golden effects for key elements */
+/* Premium cloud-like effects for key elements */
 .metallic-silver {
   background: var(--card);
   box-shadow: var(--shadow-silver);
   text-shadow: var(--text-shadow-silver);
-  border: 1px solid rgba(255, 248, 225, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
 }
 
-.metallic-gold {
+.metallic-blue {
   background: var(--accent);
-  box-shadow: var(--shadow-gold);
-  text-shadow: var(--text-shadow-gold);
-  border: 1px solid rgba(255, 217, 61, 0.3);
+  box-shadow: var(--shadow-blue);
+  text-shadow: var(--text-shadow-blue);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  font-weight: 700;
 }
 
 .premium-gradient {
   background: var(--background);
 }
 
-/* Enhanced button styles for warm metallic theme */
+/* Enhanced button styles for fluffy cloud theme */
 .btn-silver {
   background: var(--primary);
   box-shadow: var(--shadow-silver);
-  border: 1px solid rgba(255, 248, 225, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .btn-silver:hover {
-  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 248, 225, 0.4);
-  transform: translateY(-1px);
-}
-
-.btn-gold {
-  background: var(--accent);
-  box-shadow: var(--shadow-gold);
-  border: 1px solid rgba(255, 217, 61, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn-gold:hover {
-  box-shadow: 0 12px 35px -5px rgba(238, 90, 36, 0.4), 0 6px 8px -2px rgba(255, 217, 61, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.3), 0 6px 12px -2px rgba(74, 144, 226, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
 
-/* Warm golden card enhancement */
+.btn-blue {
+  background: var(--accent);
+  box-shadow: var(--shadow-blue);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-blue:hover {
+  box-shadow: 0 12px 35px -5px rgba(74, 144, 226, 0.4), 0 6px 15px -2px rgba(135, 206, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Fluffy white pillow card enhancement */
 .premium-card {
   background: var(--card);
   box-shadow: var(--shadow-silver);
-  border: 1px solid rgba(255, 248, 225, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
-/* Heart icon styling to match the intertwined hearts theme */
+/* Heart icon styling to match the cloud theme */
 .heart-icon {
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)) drop-shadow(0 1px 2px rgba(255,248,225,0.8));
+  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.1)) drop-shadow(0 1px 2px rgba(255,255,255,0.8));
   transition: all 0.3s ease;
+  color: #4a90e2;
 }
 
 .heart-icon:hover {
-  filter: drop-shadow(0 4px 8px rgba(238, 90, 36, 0.3)) drop-shadow(0 2px 4px rgba(255, 217, 61, 0.5));
+  filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3)) drop-shadow(0 2px 4px rgba(135, 206, 235, 0.4));
   transform: scale(1.05);
+}
+
+/* Bold text styling for better readability */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: -0.02em;
+}
+
+p, span, div {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.font-semibold {
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
