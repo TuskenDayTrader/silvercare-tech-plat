@@ -6,12 +6,6 @@ import { Separator } from '@/components/ui/separator'
 import { useKV } from '@github/spark/hooks'
 
 
-  content: string
-  dateAdded: string
-}
-const Se
- 
-
 interface Article {
   id: string
   title: string
