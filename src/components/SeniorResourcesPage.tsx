@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, Ca
+import { Separator } from '@/components/ui/separator'
+import { useKV } from '@github/spark/hooks'
 import { Separator } from '@/components/ui/separator'
 import { Heart, Music, Users, Sparkles, Brain, Smile, ArrowLeft, Plus, Edit, Trash2, BookOpen, Settings } from '@phosphor-icons/react'
 import { useKV } from '@github/spark/hooks'
 import Logo from '@/components/Logo'
-import AdminPanel from '@/components/AdminPanel'
-import type { TranslationContent } from '@/lib/translations'
-
-interface NavigationProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
-  language: 'en' | 'es' | 'zh'
+  onNavigate: (page: 'home' | 'register' | 'gall
   t: TranslationContent
+
+  id: string
+  category: string
+  content: string
+  dateAdded: string
 }
 
 interface Article {
@@ -32,108 +32,108 @@ const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, 
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
   // Initialize with default articles if none exist
-  useEffect(() => {
-    if (articles.length === 0) {
-      const defaultArticles: Article[] = [
-        {
-          id: '1',
-          title: 'The Power of Social Engagement in Senior Care',
-          category: 'Social Engagement',
-          summary: 'Research shows that meaningful social connections significantly improve cognitive function, reduce depression, and enhance overall quality of life for seniors.',
-          content: `Social engagement is one of the most powerful interventions for improving senior well-being. Studies consistently demonstrate that seniors who maintain active social connections experience better cognitive function, reduced rates of depression, and improved physical health outcomes.
+- **Physical Health
 
-## Key Benefits:
-- **Cognitive Protection**: Regular social interaction helps maintain cognitive function and may delay onset of dementia
-- **Emotional Well-being**: Social connections reduce feelings of loneliness and depression
-- **Physical Health**: Socially engaged seniors show improved immune function and lower inflammation markers
-- **Sense of Purpose**: Group activities and social roles provide meaning and structure
-
-## Implementation Strategies:
-1. **Group Activities**: Organize regular group meals, game nights, and discussion circles
-2. **Intergenerational Programs**: Connect seniors with children through reading programs or craft activities
-3. **Volunteer Opportunities**: Create roles where seniors can help others within the facility
-4. **Family Integration**: Facilitate regular family visits and virtual connections
-5. **Peer Support Systems**: Establish buddy systems and friendship circles
-
+1. **Group Activities**: Organize regular 
+3. **Volu
+5. **Peer Support 
 ## Evidence-Based Outcomes:
-Research from the Journal of Aging and Health shows that seniors in socially engaging environments experience 23% fewer cognitive decline symptoms and 31% improvement in mood scores compared to those in traditional care settings.`,
           citations: [
-            'Holt-Lunstad, J., Smith, T. B., & Layton, J. B. (2010). Social relationships and mortality risk: a meta-analytic review. PLoS medicine, 7(7), e1000316.',
-            'Cornwell, E. Y., & Waite, L. J. (2009). Social disconnectedness, perceived isolation, and health among older adults. Journal of health and social behavior, 50(1), 31-48.',
-            'https://journals.sagepub.com/doi/abs/10.1177/0898264312461154'
+            'Cornwell, E. Y., & Waite, L. J. (2009). Social disconnectedness, perceived isolation, and health among older adults. Journal of health and social behavior, 50(1), 31-48
           ],
-          dateAdded: '2024-01-15',
-          featured: true
-        },
+
         {
-          id: '2',
           title: 'Laughter Therapy: Healing Through Humor',
-          category: 'Laughter Therapy',
-          summary: 'Humor interventions and laughter therapy have been scientifically proven to reduce depression, decrease agitation, and improve overall mental health in seniors.',
-          content: `Laughter therapy represents one of the most enjoyable and effective interventions for improving senior mental health. Clinical studies demonstrate significant reductions in depression, anxiety, and behavioral issues through structured humor programs.
+          summary: 'Humor interventions and laughter therapy have been scientifically prove
 
-## Scientific Foundation:
-Laughter triggers the release of endorphins, reduces cortisol levels, and stimulates immune function. For seniors, these physiological changes translate into measurable improvements in mood, sleep quality, and social engagement.
+Laughter triggers the release of endorphins, reduces cortisol levels, and stimulates im
 
-## Program Components:
-1. **Comedy Hour**: Weekly sessions featuring age-appropriate humor and entertainment
-2. **Joke Sharing Circles**: Encourage residents to share favorite jokes and funny stories
-3. **Funny Movie Nights**: Classic comedies that resonate with senior audiences
+2. **Joke Sharing Circles**: 
 4. **Humor Therapy Groups**: Structured sessions led by trained facilitators
-5. **Laughter Yoga**: Combining gentle movement with intentional laughter exercises
 
-## Implementation Guidelines:
 - **Cultural Sensitivity**: Ensure humor is appropriate and inclusive for diverse backgrounds
-- **Individual Preferences**: Adapt content to personal tastes and cognitive abilities
 - **Regular Schedule**: Consistency is key for maximum therapeutic benefit
-- **Staff Training**: Educate caregivers on incorporating appropriate humor into daily care
 
-## Measured Outcomes:
-Studies show participants in laughter therapy programs experience 40% reduction in depression scores, 35% decrease in agitation episodes, and 50% improvement in social participation rates.`,
-          citations: [
-            'Low, L. F., Brodaty, H., Goodenough, B., Spitzer, P., Bell, J. P., Fleming, R., ... & Chenoweth, L. (2013). The Sydney Multisite Intervention of LaughterBosses and ElderClowns (SMILE) study: cluster randomised trial of humour therapy in nursing homes. BMJ open, 3(1), e002072.',
-            'https://onlinelibrary.wiley.com/doi/abs/10.1002/gps.3725',
-            'Ghodsbin, F., Ahmadi, S., Jahanbin, I., Sharif, F., Sajjadi, M., & Dehghan, M. (2015). The effects of laughter therapy on general health of elderly people referring to jahandidegan community center in Shiraz, Iran, 2014: a randomized controlled trial. International journal of community based nursing and midwifery, 3(1), 31.'
-          ],
-          dateAdded: '2024-01-16',
-          featured: true
+
+            'Low, L. F., Br
+            'Ghodsbin, F., Ahmadi, S., Jahanbin, I., Sharif, F., Sajjadi, M., & Dehghan, M. (2015). The effects of laughter therapy on general health of elderly people referring to jahandidegan community center in Shiraz, Iran, 201
+          dateAdded: '
         },
-        {
           id: '3',
-          title: 'Music Therapy: Harmonizing Hearts and Minds',
           category: 'Music Therapy',
-          summary: 'Music therapy provides profound benefits for seniors, improving cognitive function, reducing anxiety, and creating meaningful emotional connections.',
-          content: `Music therapy stands as one of the most powerful non-pharmacological interventions for seniors, offering benefits that span cognitive, emotional, and social domains. Research consistently shows that musical engagement can slow cognitive decline and significantly improve quality of life.
-
+          co
 ## Neurological Benefits:
-Music activates multiple brain regions simultaneously, creating new neural pathways and strengthening existing connections. This neuroplasticity is particularly beneficial for seniors with dementia or cognitive impairment.
 
-## Program Elements:
-1. **Personalized Playlists**: Curate music from residents' youth and cultural background
-2. **Group Sing-Alongs**: Foster community through shared musical experiences
-3. **Instrument Play**: Simple percussion and melodic instruments for hands-on engagement
-4. **Music and Movement**: Gentle dancing and rhythmic exercises
-5. **Live Performances**: Regular concerts by local musicians and student groups
-
+1. **Perso
+3. **Inst
+5. **Live Performa
 ## Cognitive Benefits:
-- **Memory Stimulation**: Familiar songs can trigger detailed autobiographical memories
-- **Language Skills**: Singing helps maintain and improve verbal communication
-- **Executive Function**: Musical activities enhance planning and sequencing abilities
+- **Language Skills**: Singing helps ma
 - **Attention Span**: Sustained musical engagement improves focus and concentration
-
 ## Emotional Regulation:
-Music therapy helps seniors process emotions, reduce anxiety, and find comfort during difficult transitions. The shared experience of music also builds social connections and reduces isolation.
 
-## Implementation Best Practices:
-- **Individual Assessment**: Understand each resident's musical preferences and history
-- **Qualified Facilitators**: Work with certified music therapists when possible
+- **Individual Assessment
 - **Adaptive Approaches**: Modify activities for different cognitive and physical abilities
-- **Family Involvement**: Include family members in musical memories and activities`,
-          citations: [
-            'Särkämö, T., Tervaniemi, M., Laitinen, S., Numminen, A., Kurki, M., Johnson, J. K., & Rantanen, P. (2014). Cognitive, emotional, and social benefits of regular musical activities in early dementia: randomized controlled study. The Gerontologist, 54(4), 634-650.',
-            'https://www.alz.org/professionals/health-systems-clinicians/dementia-care-practice-recommendations',
-            'van der Steen, J. T., Smaling, H. J., van der Wouden, J. C., Bruinsma, M. S., Scholten, R. J., & Vink, A. C. (2018). Music‐based therapeutic interventions for people with dementia. Cochrane Database of Systematic Reviews, (7).'
+
+            'https://w
           ],
+          featured: false
+        {
+          title: 'Pet Therapy: Healing Through Animal Companionship',
+          summary: 'Animal-assisted therapy provides emotional comfort, reduces str
+
+Interaction with therapy anim
+## Program Types:
+2. **Facility Pets**: Resident animals that become part of the care community
+4. **Pet Viewing Programs**: Aquariums, bird aviaries, or garden wildlife 
+
+
+- **Unconditional Acc
+- **Memory Stimulation**: Animals often trigger positive memories of past pets
+## Safety Consideratio
+- **Allergy Management**: Screen residents for animal allergies and plan accordingly
+- **Supervision**: Always have trained staff present during animal inte
+
+Studies show
+            'Nordgren, L., & Engst
+            'https://www
+          
+        }
+          id: '5',
+          category: 'Reminiscence Therapy',
+          content: `Reminiscence the
+## Theoretical Foundation:
+
+
+3. **Timeline Activities*
+5. **Intergenerational Sharing**: Pairing seniors with younger visitors to share stories
+
+- **Identity Mainten
+- **Problem-Solving**: Reflecting on past challenges and solutions builds confidence
+## Emotional Outcomes:
+
+- **Individual Sessions**: One-on-one time for deeply personal m
+- **Family Involvement**: Include family members in memory-sharing activities
+
+## Research Outcomes:
+          citations: [
+            'Pinquart, M., & Forstmeier, S. (2012). Effects of reminiscence in
+          ],
+          featured: false
+
+    }
+
+
+    ? articles 
+
+  const latestArticles = [...articles]
+    .slice(0, 3)
+  const getCategoryIcon = (category: string) => {
+      case 'Social Eng
+      case 'Music Therapy': return <Music className="w-5 h-5" />
+      case 'Reminiscence Therapy': return <Brain className="w-5 h-5" />
+    }
+
           dateAdded: '2024-01-17',
           featured: false
         },
@@ -270,213 +270,212 @@ Clinical trials demonstrate that structured reminiscence therapy reduces depress
               </Button>
               <Separator orientation="vertical" className="h-6" />
               <Logo className="h-8" />
-            </div>
-            <Button
-              onClick={() => setShowAdmin(true)}
-              variant="outline"
-              size="sm"
-              className="btn-blue"
-            >
-              <Settings className="w-4 h-4 mr-2" />
-              Admin Panel
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <Sparkles className="w-8 h-8 text-primary" />
-            <h1 className="text-4xl font-bold text-foreground">
-              Senior Happiness & Engagement Resources
-            </h1>
-            <Sparkles className="w-8 h-8 text-primary" />
-          </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Evidence-based strategies, activities, and research to bring joy, purpose, and well-being 
-            to seniors in care facilities and memory care units.
-          </p>
-        </div>
-
-        {/* Featured Articles */}
-        {featuredArticles.length > 0 && (
-          <section className="mb-16">
-            <h2 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-primary" />
-              Featured Resources
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {featuredArticles.map(article => (
-                <Card key={article.id} className="premium-card hover:shadow-lg transition-all duration-300">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          {getCategoryIcon(article.category)}
-                          <Badge variant="secondary" className="text-xs">
-                            {article.category}
-                          </Badge>
-                        </div>
-                        <CardTitle className="text-lg font-bold text-foreground">
-                          {article.title}
-                        </CardTitle>
-                      </div>
-                    </div>
-                    <CardDescription className="text-muted-foreground">
-                      {article.summary}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-sm text-muted-foreground mb-4">
-                      Added: {new Date(article.dateAdded).toLocaleDateString()}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      <strong>Key Citations:</strong>
-                      <ul className="mt-2 space-y-1">
-                        {article.citations.slice(0, 2).map((citation, idx) => (
-                          <li key={idx} className="text-xs">
-                            • {citation.length > 100 ? `${citation.substring(0, 100)}...` : citation}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Latest Articles */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-primary" />
-            Latest Articles
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {latestArticles.map(article => (
-              <Card key={article.id} className="premium-card hover:shadow-lg transition-all duration-300">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    {getCategoryIcon(article.category)}
-                    <Badge variant="outline" className="text-xs">
-                      {article.category}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-base font-bold text-foreground">
-                    {article.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    {article.summary.substring(0, 120)}...
-                  </p>
-                  <div className="text-xs text-muted-foreground">
-                    {new Date(article.dateAdded).toLocaleDateString()}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Category Filter */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Browse by Category</h2>
-          <div className="flex flex-wrap gap-3">
-            {categories.map(category => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category ? "btn-blue" : ""}
-              >
-                {category === 'all' ? (
+          <div cla
+              <Butt
+                variant={selectedCategory === ca
+                className={sele
+                {catego
+                    <BookOpen clas
+             
                   <>
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    All Resources
-                  </>
-                ) : (
-                  <>
-                    {getCategoryIcon(category)}
-                    <span className="ml-2">{category}</span>
-                  </>
+                    <span
                 )}
-              </Button>
             ))}
-          </div>
-        </section>
+        </sect
+        {/* All
 
-        {/* All Articles */}
-        <section>
-          <div className="grid gap-8">
-            {filteredArticles.map(article => (
-              <Card key={article.id} className="premium-card">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        {getCategoryIcon(article.category)}
+              <Card key={article.id} className="premi
+                  <div class
+                      <div className="flex 
                         <Badge variant="secondary">
-                          {article.category}
                         </Badge>
-                        {article.featured && (
-                          <Badge variant="default" className="bg-primary">
-                            Featured
+                          <Badge variant="default" className="b
                           </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl font-bold text-foreground">
+                 
                         {article.title}
-                      </CardTitle>
-                    </div>
-                  </div>
+                
                   <CardDescription className="text-muted-foreground">
-                    {article.summary}
                   </CardDescription>
-                </CardHeader>
                 <CardContent>
-                  <div className="prose prose-sm max-w-none text-foreground mb-6">
-                    <div dangerouslySetInnerHTML={{ __html: article.content.replace(/\n/g, '<br>') }} />
-                  </div>
-                  
-                  <Separator className="my-6" />
-                  
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-foreground">References & Citations:</h4>
-                    <ul className="space-y-2">
-                      {article.citations.map((citation, idx) => (
-                        <li key={idx} className="text-sm text-muted-foreground">
-                          <span className="font-medium">[{idx + 1}]</span> {citation}
-                        </li>
+              
+              
+
+                    <h4 className
+                      {article.citations.
+                          <span class
                       ))}
-                    </ul>
-                    <div className="text-xs text-muted-foreground pt-4 border-t">
-                      Added to resources: {new Date(article.dateAdded).toLocaleDateString()}
+                    <div className="text-xs text-muted-fore
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                <
             ))}
-          </div>
         </section>
-
         {filteredArticles.length === 0 && (
-          <div className="text-center py-16">
-            <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-foreground mb-2">No Articles Found</h3>
+            <BookOpen classNam
             <p className="text-muted-foreground">
-              {selectedCategory === 'all' 
-                ? 'No articles have been added yet.' 
-                : `No articles found in the "${selectedCategory}" category.`}
+                ? 'No articles have been added
             </p>
-          </div>
         )}
-      </main>
     </div>
-  )
 }
-
 export default SeniorResourcesPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
