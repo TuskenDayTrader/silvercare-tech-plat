@@ -29,14 +29,14 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
             filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2)) drop-shadow(0 1px 2px rgba(255,255,255,0.8))'
           }}
         />
-        {/* Inner heart with golden accent */}
+        {/* Inner heart with blue accent */}
         <Heart 
           size={innerHeartSize} 
           className="absolute top-1 left-1 heart-icon"
           weight="fill"
           style={{
-            color: '#ff9f43',
-            filter: 'drop-shadow(0 1px 2px rgba(238, 90, 36, 0.3))'
+            color: '#4a90e2',
+            filter: 'drop-shadow(0 1px 2px rgba(74, 144, 226, 0.3))'
           }}
         />
         {/* Intertwined effect - additional heart for depth */}
@@ -45,9 +45,9 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
           className="absolute top-2 left-2 heart-icon"
           weight="fill"
           style={{
-            color: '#ffd93d',
+            color: '#6bb6ff',
             opacity: 0.8,
-            filter: 'drop-shadow(0 1px 1px rgba(255, 217, 61, 0.5))'
+            filter: 'drop-shadow(0 1px 1px rgba(107, 182, 255, 0.5))'
           }}
         />
       </div>
@@ -68,11 +68,11 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
         <span 
           className="text-muted-foreground text-sm font-medium"
           style={{
-            background: 'linear-gradient(135deg, #ff9f43 0%, #ffd93d 100%)',
+            background: 'linear-gradient(135deg, #4a90e2 0%, #6bb6ff 100%)',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             color: 'transparent',
-            textShadow: 'var(--text-shadow-gold)'
+            textShadow: 'var(--text-shadow-blue)'
           }}
         >
           Connecting Generations, One Call at a Time

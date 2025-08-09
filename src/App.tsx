@@ -5,9 +5,10 @@ import HomePage from '@/components/HomePage'
 import RegistrationPage from '@/components/RegistrationPage'
 import GalleryPage from '@/components/GalleryPage'
 import LearnMorePage from '@/components/LearnMorePage'
+import SeniorResourcesPage from '@/components/SeniorResourcesPage'
 import ErrorBoundary from '@/components/ErrorBoundary'
 
-type Page = 'home' | 'register' | 'gallery' | 'learn-more'
+type Page = 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
@@ -15,7 +16,7 @@ function App() {
   // Safe navigation handler with validation and error boundary
   const handleNavigation = (page: Page) => {
     try {
-      const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more']
+      const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more', 'senior-resources']
       if (validPages.includes(page)) {
         setCurrentPage(page)
         // Scroll to top when navigating to a new page
@@ -43,6 +44,8 @@ function App() {
         handleNavigation('gallery')
       } else if (lowerCommand.includes('learn more') || lowerCommand.includes('information') || lowerCommand.includes('research')) {
         handleNavigation('learn-more')
+      } else if (lowerCommand.includes('senior resources') || lowerCommand.includes('happiness') || lowerCommand.includes('engagement')) {
+        handleNavigation('senior-resources')
       } else if (lowerCommand.includes('scroll down') || lowerCommand.includes('scroll')) {
         window.scrollBy({ top: 300, behavior: 'smooth' })
       } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top')) {
@@ -67,6 +70,8 @@ function App() {
           return <GalleryPage onNavigate={handleNavigation} />
         case 'learn-more':
           return <LearnMorePage onNavigate={handleNavigation} />
+        case 'senior-resources':
+          return <SeniorResourcesPage onNavigate={handleNavigation} />
         default:
           // Fallback to home page if invalid page state
           handleNavigation('home')

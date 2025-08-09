@@ -4,58 +4,84 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, Heart, Users, VideoCamera, Phone } from '@phosphor-icons/react'
 import Logo from '@/components/Logo'
 
+// Import the new uploaded images
+import st1 from '@/assets/images/st1.png.jpeg'
+import st2 from '@/assets/images/st2.png_(1).jpeg'
+import st3 from '@/assets/images/st3.png_(2).jpeg'
+import st4 from '@/assets/images/st4.png_(3).jpeg'
+import st5 from '@/assets/images/st5.png_(4).jpeg'
+import st6 from '@/assets/images/st6.png_(5).jpeg'
+import st7 from '@/assets/images/st7.png_(6).jpeg'
+import st8 from '@/assets/images/st8.png_(7).jpeg'
+import st9 from '@/assets/images/st9.png_(8).jpeg'
+
 interface GalleryPageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
 }
 
 const galleryImages = [
   {
     id: 1,
+    src: st1,
     title: "A Smile Reunited",
     description: "Grandmother Mary's face lights up during her first video call with her grandchildren in months.",
     category: "Video Call"
   },
   {
     id: 2,
+    src: st2,
     title: "Cherished Memories",
     description: "Three generations sharing stories and laughter across the miles.",
     category: "Family Connection"
   },
   {
     id: 3,
+    src: st3,
     title: "Sunday Family Time",
     description: "Weekly virtual family dinners bringing everyone together, no matter the distance.",
     category: "Regular Calls"
   },
   {
     id: 4,
-    title: "Birthday Celebrations",
-    description: "Celebrating Grandpa's 85th birthday with family joining from five different states.",
-    category: "Special Occasions"
+    src: st4,
+    title: "Technology Made Simple",
+    description: "Professional setup ensures seniors can focus on what matters most - connecting with loved ones.",
+    category: "Easy Setup"
   },
   {
     id: 5,
-    title: "Reading Together",
-    description: "Grandma reading bedtime stories to her grandchildren via video call.",
-    category: "Activities"
+    src: st5,
+    title: "Moments of Joy",
+    description: "Every connection brings new smiles and heartwarming moments to cherish.",
+    category: "Happy Moments"
   },
   {
     id: 6,
-    title: "Holiday Traditions",
-    description: "Sharing Christmas morning together through technology when travel isn't possible.",
-    category: "Holidays"
+    src: st6,
+    title: "Bridging the Distance",
+    description: "Love knows no boundaries when technology brings families together.",
+    category: "Connection"
   },
   {
     id: 7,
-    title: "Daily Check-ins",
-    description: "Simple morning conversations that make all the difference in feeling connected.",
-    category: "Daily Connection"
+    src: st7,
+    title: "Shared Celebrations",
+    description: "Birthdays, holidays, and special moments celebrated together virtually.",
+    category: "Celebrations"
   },
   {
     id: 8,
-    title: "Group Celebrations",
-    description: "Care facility residents joining virtual family gatherings and community events.",
-    category: "Community"
+    src: st8,
+    title: "Daily Check-ins",
+    description: "Regular calls that provide comfort, companionship, and peace of mind.",
+    category: "Daily Support"
+  },
+  {
+    id: 9,
+    src: st9,
+    title: "Intergenerational Bonds",
+    description: "Grandparents sharing wisdom and stories with the next generation.",
+    category: "Legacy Sharing"
   }
 ]
 
@@ -63,13 +89,13 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'Video Call':
-        return <VideoCamera size={20} className="heart-icon" style={{ color: '#6c757d' }} />
+        return <VideoCamera size={20} className="heart-icon" />
       case 'Family Connection':
-        return <Users size={20} className="heart-icon" style={{ color: '#ff9f43' }} />
-      case 'Special Occasions':
-        return <Heart size={20} className="heart-icon" style={{ color: '#ffd93d' }} />
+        return <Users size={20} className="heart-icon" />
+      case 'Happy Moments':
+        return <Heart size={20} className="heart-icon" />
       default:
-        return <Phone size={20} className="heart-icon" style={{ color: '#8e9aaf' }} />
+        return <Phone size={20} className="heart-icon" />
     }
   }
 
@@ -114,12 +140,13 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
           {galleryImages.map((image) => (
             <Card key={image.id} className="premium-card group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
-                <div className="aspect-square metallic-silver rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                  <div className="text-6xl opacity-30 group-hover:opacity-50 transition-all duration-300 heart-icon">
-                    {getCategoryIcon(image.category)}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="aspect-square rounded-lg mb-4 overflow-hidden relative group-hover:shadow-lg transition-all duration-300">
+                  <img 
+                    src={image.src} 
+                    alt={image.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
                 <div className="space-y-3">
@@ -144,12 +171,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
                   
                   <div className="pt-2">
                     <span 
-                      className="inline-block px-3 py-1 rounded-full text-xs font-medium metallic-gold"
-                      style={{
-                        background: 'linear-gradient(145deg, #ffd93d 0%, #ff9f43 100%)',
-                        color: 'white',
-                        textShadow: 'var(--text-shadow-gold)'
-                      }}
+                      className="inline-block px-3 py-1 rounded-full text-xs font-medium metallic-blue text-white"
                     >
                       {image.category}
                     </span>
@@ -227,7 +249,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
 
           <Button 
             size="lg" 
-            className="btn-gold text-lg px-8 py-6 font-semibold"
+            className="btn-blue text-lg px-8 py-6 font-semibold"
             onClick={() => onNavigate('register')}
           >
             <Heart size={20} className="mr-2" />

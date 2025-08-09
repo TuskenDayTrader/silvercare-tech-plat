@@ -1,15 +1,15 @@
 import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Users, Heart, Phone } from '@phosphor-icons/react'
+import { ArrowRight, Users, Heart, Phone, Sparkles } from '@phosphor-icons/react'
 import Logo from '@/components/Logo'
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
+  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => {
     try {
       onNavigate(page)
     } catch (error) {
@@ -44,7 +44,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </p>
           <Button 
             size="lg" 
-            className="btn-gold text-lg px-8 py-6 font-semibold"
+            className="btn-blue text-lg px-8 py-6 font-semibold"
             onClick={() => handleNavigation('register')}
           >
             Connect Your Loved One Today
@@ -80,7 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           <Card className="premium-card p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <CardContent className="pt-6">
-              <div className="w-16 h-16 metallic-gold rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 metallic-blue rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart size={32} className="text-accent-foreground heart-icon" />
               </div>
               <h3 
@@ -163,7 +163,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </Button>
             <Button 
               size="lg" 
-              className="btn-gold text-lg px-8 py-6 font-semibold"
+              className="btn-blue text-lg px-8 py-6 font-semibold"
+              onClick={() => handleNavigation('senior-resources')}
+            >
+              <Sparkles size={20} className="mr-2" />
+              Senior Happiness & Engagement Resources
+            </Button>
+            <Button 
+              size="lg" 
+              className="btn-silver text-lg px-8 py-6 font-semibold"
               onClick={() => handleNavigation('learn-more')}
             >
               Learn More About Our Research

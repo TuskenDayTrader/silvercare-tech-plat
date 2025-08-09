@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button'
 import { Heart, Users, Phone, Video, Home, UserPlus, ArrowLeft, Shield, Lightbulb } from '@phosphor-icons/react'
 
 interface LearnMorePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void;
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void;
 }
 
 const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
-  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more') => {
+  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => {
     try {
       onNavigate(page)
     } catch (error) {
@@ -339,7 +339,7 @@ const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
               </Button>
               <Button 
                 onClick={() => handleNavigation('register')} 
-                className="min-w-[200px] btn-gold font-semibold"
+                className="min-w-[200px] btn-blue font-semibold"
               >
                 <UserPlus size={20} className="mr-2" />
                 Sign Up to Connect

@@ -9,14 +9,14 @@
 
 :root {
   /* Pure white fluffy cloud background */
-  --background: linear-gradient(135deg, #ffffff 0%, #f8faff 25%, #f0f6ff 50%, #e8f2ff 75%, #e0efff 100%);
+  --background: linear-gradient(135deg, #ffffff 0%, #fdfdff 25%, #fafcff 50%, #f7faff 75%, #f4f8ff 100%);
   --background-solid: oklch(0.99 0.005 220);
-  --foreground: oklch(0.12 0.02 240);
+  --foreground: oklch(0.10 0.025 240);
   
   /* Soft white pillow card surfaces */
-  --card: linear-gradient(145deg, #ffffff 0%, #f8faff 50%, #f0f6ff 100%);
+  --card: linear-gradient(145deg, #ffffff 0%, #fdfdff 50%, #fafcff 100%);
   --card-solid: oklch(0.99 0.003 220);
-  --card-foreground: oklch(0.15 0.02 240);
+  --card-foreground: oklch(0.12 0.025 240);
   
   --popover: oklch(0.99 0.003 220);
   --popover-foreground: oklch(0.15 0.02 240);
@@ -27,13 +27,13 @@
   --primary-foreground: oklch(0.99 0.005 240);
   
   /* Soft white secondary with subtle blue tint */
-  --secondary: linear-gradient(145deg, #ffffff 0%, #f8faff 50%, #f0f6ff 100%);
+  --secondary: linear-gradient(145deg, #ffffff 0%, #fdfdff 50%, #fafcff 100%);
   --secondary-solid: oklch(0.97 0.005 220);
-  --secondary-foreground: oklch(0.18 0.02 240);
+  --secondary-foreground: oklch(0.15 0.025 240);
   
   /* Soft blue muted tones */
   --muted: oklch(0.96 0.005 220);
-  --muted-foreground: oklch(0.40 0.02 240);
+  --muted-foreground: oklch(0.38 0.025 240);
   
   /* Gentle light blue accent */
   --accent: linear-gradient(145deg, #87ceeb 0%, #6bb6ff 50%, #4a90e2 100%);

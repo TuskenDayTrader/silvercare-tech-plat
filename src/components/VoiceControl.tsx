@@ -97,12 +97,12 @@ const VoiceControl: React.FC<VoiceControlProps> = ({ onCommand, isActive = true 
       size="lg"
       className={`fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg transition-all duration-300 ${
         isListening 
-          ? 'animate-pulse btn-gold' 
+          ? 'animate-pulse btn-blue' 
           : 'btn-silver hover:scale-105'
       }`}
       style={{
         boxShadow: isListening 
-          ? 'var(--shadow-gold)' 
+          ? 'var(--shadow-blue)' 
           : 'var(--shadow-silver)'
       }}
       aria-label={isListening ? 'Stop listening' : 'Start voice commands'}

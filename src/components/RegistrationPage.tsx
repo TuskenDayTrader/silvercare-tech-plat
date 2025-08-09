@@ -11,7 +11,7 @@ import { useKV } from '@github/spark/hooks'
 import Logo from '@/components/Logo'
 
 interface RegistrationPageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
 }
 
 interface RegistrationData {
@@ -119,7 +119,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                 <ArrowLeft size={20} className="mr-2" />
                 Back to Home
               </Button>
-              <Button onClick={() => onNavigate('gallery')} size="lg" className="btn-gold">
+              <Button onClick={() => onNavigate('gallery')} size="lg" className="btn-blue">
                 See Happy Moments
               </Button>
             </div>
@@ -316,7 +316,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full text-lg py-6 btn-gold font-semibold"
+                    className="w-full text-lg py-6 btn-blue font-semibold"
                   >
                     <Calendar size={20} className="mr-2" />
                     Submit Registration
