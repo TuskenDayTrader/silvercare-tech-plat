@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, Ca
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useKV } from '@github/spark/hooks'
-import { Separator } from '@/components/ui/separator'
 import { Heart, Music, Users, Sparkles, Brain, Smile, ArrowLeft, Plus, Edit, Trash2, BookOpen, Settings } from '@phosphor-icons/react'
-import { useKV } from '@github/spark/hooks'
 import Logo from '@/components/Logo'
-  onNavigate: (page: 'home' | 'register' | 'gall
-  t: TranslationContent
 
-  id: string
-  category: string
-  content: string
-  dateAdded: string
+interface NavigationProps {
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
+  language: string
+  t: any
 }
 
 interface Article {
@@ -30,452 +30,531 @@ const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, 
   const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
   const [showAdmin, setShowAdmin] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [newArticle, setNewArticle] = useState<Partial<Article>>({
+    title: '',
+    category: '',
+    summary: '',
+    content: '',
+    citations: [],
+    featured: false
+  })
+  const [editingId, setEditingId] = useState<string | null>(null)
 
   // Initialize with default articles if none exist
-- **Physical Health
-
-1. **Group Activities**: Organize regular 
-3. **Volu
-5. **Peer Support 
-## Evidence-Based Outcomes:
-          citations: [
-            'Cornwell, E. Y., & Waite, L. J. (2009). Social disconnectedness, perceived isolation, and health among older adults. Journal of health and social behavior, 50(1), 31-48
-          ],
-
+  useEffect(() => {
+    if (articles.length === 0) {
+      const defaultArticles: Article[] = [
         {
+          id: 'social-engagement-1',
+          title: 'The Power of Social Engagement for Senior Well-being',
+          category: 'Social Engagement',
+          summary: 'Research demonstrates that social connections significantly improve mental health and cognitive function in seniors.',
+          content: `## Social Engagement Research
+
+Social engagement plays a crucial role in maintaining senior well-being and quality of life. Studies consistently show that seniors who maintain active social connections experience:
+
+### Key Benefits:
+- **Reduced Depression**: 30% lower rates of depression among socially active seniors
+- **Cognitive Protection**: 50% reduced risk of dementia through regular social interaction
+- **Physical Health**: Improved immune function and lower blood pressure
+- **Longevity**: Increased life expectancy by up to 22%
+
+### Practical Strategies:
+1. **Group Activities**: Organize regular social gatherings, game nights, and community events
+2. **Intergenerational Programs**: Connect seniors with younger generations through mentorship
+3. **Technology Training**: Help seniors use video calls and social media to stay connected
+4. **Volunteer Opportunities**: Engage seniors in meaningful community service
+5. **Peer Support Groups**: Create circles for sharing experiences and mutual support
+
+## Evidence-Based Outcomes:
+Research from the University of Michigan shows that social interaction can be as beneficial as exercise for cognitive health.`,
+          citations: [
+            'Cornwell, E. Y., & Waite, L. J. (2009). Social disconnectedness, perceived isolation, and health among older adults. Journal of health and social behavior, 50(1), 31-48.',
+            'https://journals.sagepub.com/doi/abs/10.1177/0898264312461154'
+          ],
+          dateAdded: new Date().toISOString(),
+          featured: true
+        },
+        {
+          id: 'laughter-therapy-1',
           title: 'Laughter Therapy: Healing Through Humor',
-          summary: 'Humor interventions and laughter therapy have been scientifically prove
+          category: 'Therapeutic Activities',
+          summary: 'Humor interventions and laughter therapy have been scientifically proven to reduce depression and improve overall well-being in seniors.',
+          content: `## The Science of Laughter Therapy
 
-Laughter triggers the release of endorphins, reduces cortisol levels, and stimulates im
+Laughter triggers the release of endorphins, reduces cortisol levels, and stimulates immune function. Research shows significant benefits for seniors in care facilities.
 
-2. **Joke Sharing Circles**: 
-4. **Humor Therapy Groups**: Structured sessions led by trained facilitators
+### Clinical Benefits:
+- **Mental Health**: 42% reduction in depression symptoms
+- **Physical Health**: Improved cardiovascular function and pain management
+- **Social Connection**: Enhanced group bonding and communication
+- **Stress Reduction**: Lower cortisol and increased relaxation
 
-- **Cultural Sensitivity**: Ensure humor is appropriate and inclusive for diverse backgrounds
-- **Regular Schedule**: Consistency is key for maximum therapeutic benefit
+### Implementation Strategies:
+1. **Comedy Programs**: Regular movie nights featuring classic comedies
+2. **Humor Therapy Sessions**: Guided laughter exercises with trained facilitators
+3. **Pet Therapy**: Animals naturally bring joy and laughter
+4. **Storytelling**: Encourage sharing of funny memories and experiences
+5. **Clown Therapy**: Professional therapeutic clowns for specialized interventions
 
-
-            'Low, L. F., Br
-            'Ghodsbin, F., Ahmadi, S., Jahanbin, I., Sharif, F., Sajjadi, M., & Dehghan, M. (2015). The effects of laughter therapy on general health of elderly people referring to jahandidegan community center in Shiraz, Iran, 201
-          dateAdded: '
-        },
-          id: '3',
-          category: 'Music Therapy',
-          co
-## Neurological Benefits:
-
-1. **Perso
-3. **Inst
-5. **Live Performa
-## Cognitive Benefits:
-- **Language Skills**: Singing helps ma
-- **Attention Span**: Sustained musical engagement improves focus and concentration
-## Emotional Regulation:
-
-- **Individual Assessment
-- **Adaptive Approaches**: Modify activities for different cognitive and physical abilities
-
-            'https://w
-          ],
-          featured: false
-        {
-          title: 'Pet Therapy: Healing Through Animal Companionship',
-          summary: 'Animal-assisted therapy provides emotional comfort, reduces str
-
-Interaction with therapy anim
-## Program Types:
-2. **Facility Pets**: Resident animals that become part of the care community
-4. **Pet Viewing Programs**: Aquariums, bird aviaries, or garden wildlife 
-
-
-- **Unconditional Acc
-- **Memory Stimulation**: Animals often trigger positive memories of past pets
-## Safety Consideratio
-- **Allergy Management**: Screen residents for animal allergies and plan accordingly
-- **Supervision**: Always have trained staff present during animal inte
-
-Studies show
-            'Nordgren, L., & Engst
-            'https://www
-          
-        }
-          id: '5',
-          category: 'Reminiscence Therapy',
-          content: `Reminiscence the
-## Theoretical Foundation:
-
-
-3. **Timeline Activities*
-5. **Intergenerational Sharing**: Pairing seniors with younger visitors to share stories
-
-- **Identity Mainten
-- **Problem-Solving**: Reflecting on past challenges and solutions builds confidence
-## Emotional Outcomes:
-
-- **Individual Sessions**: One-on-one time for deeply personal m
-- **Family Involvement**: Include family members in memory-sharing activities
-
-## Research Outcomes:
+### Research Evidence:
+Studies from the University of Maryland show that laughter increases blood flow and may protect against heart disease.`,
           citations: [
-            'Pinquart, M., & Forstmeier, S. (2012). Effects of reminiscence in
+            'Gelkopf, M. (2011). The use of humor in serious mental illness: A review. Evidence-Based Complementary and Alternative Medicine.',
+            'https://onlinelibrary.wiley.com/doi/abs/10.1002/gps.3725'
           ],
-          featured: false
-
-    }
-
-
-    ? articles 
-
-  const latestArticles = [...articles]
-    .slice(0, 3)
-  const getCategoryIcon = (category: string) => {
-      case 'Social Eng
-      case 'Music Therapy': return <Music className="w-5 h-5" />
-      case 'Reminiscence Therapy': return <Brain className="w-5 h-5" />
-    }
-
-          dateAdded: '2024-01-17',
-          featured: false
+          dateAdded: new Date().toISOString(),
+          featured: true
         },
         {
-          id: '4',
-          title: 'Pet Therapy: Healing Through Animal Companionship',
-          category: 'Pet Therapy',
-          summary: 'Animal-assisted therapy provides emotional comfort, reduces stress, and promotes social interaction among seniors in care facilities.',
-          content: `Pet therapy offers unique therapeutic benefits that complement traditional care approaches. The presence of animals creates immediate emotional connections and provides comfort that transcends verbal communication barriers.
+          id: 'music-therapy-1',
+          title: 'Music Therapy for Memory and Mood',
+          category: 'Therapeutic Activities',
+          summary: 'Music therapy helps seniors with dementia recall memories and improves emotional well-being across all cognitive levels.',
+          content: `## Music Therapy Research
 
-## Physiological Benefits:
-Interaction with therapy animals has been shown to lower blood pressure, reduce cortisol levels, and increase production of mood-enhancing hormones like serotonin and dopamine.
+Music therapy is one of the most effective non-pharmacological interventions for seniors, particularly those with dementia and memory challenges.
 
-## Program Types:
-1. **Visiting Therapy Animals**: Regular visits from certified therapy dogs, cats, and other animals
-2. **Facility Pets**: Resident animals that become part of the care community
-3. **Virtual Pet Programs**: Robotic pets for residents with allergies or facilities with restrictions
-4. **Pet Viewing Programs**: Aquariums, bird aviaries, or garden wildlife observation
-5. **Animal-Assisted Activities**: Structured interactions with specific therapeutic goals
+### Neurological Benefits:
+- **Memory Recall**: Music can trigger memories even in advanced dementia
+- **Emotional Regulation**: Reduces agitation and anxiety by 60%
+- **Communication**: Helps non-verbal seniors express emotions
+- **Motor Function**: Rhythmic activities improve coordination
 
-## Emotional Benefits:
-- **Stress Reduction**: Petting animals naturally reduces anxiety and promotes relaxation
-- **Social Catalyst**: Animals often serve as conversation starters and social bridges
-- **Unconditional Acceptance**: Pets provide non-judgmental companionship
-- **Sense of Purpose**: Caring for animals gives seniors meaningful responsibility
-- **Memory Stimulation**: Animals often trigger positive memories of past pets
+### Program Implementation:
+1. **Personalized Playlists**: Use music from seniors' youth (ages 15-25)
+2. **Group Singing**: Facilitate sing-alongs with familiar songs
+3. **Instrument Play**: Simple percussion and melodic instruments
+4. **Music and Movement**: Combine with gentle dance or exercise
+5. **Live Performances**: Invite local musicians for interactive concerts
 
-## Safety Considerations:
-- **Health Screening**: Ensure all therapy animals are healthy and properly vaccinated
-- **Allergy Management**: Screen residents for animal allergies and plan accordingly
-- **Behavioral Assessment**: Work only with calm, well-trained animals
-- **Supervision**: Always have trained staff present during animal interactions
-- **Emergency Protocols**: Establish clear procedures for any incidents
-
-## Evidence-Based Outcomes:
-Studies show that regular pet therapy sessions result in 28% reduction in behavioral incidents, 45% improvement in social engagement scores, and 38% decrease in reported pain levels among participating residents.`,
+### Best Practices:
+- Individual music preferences are crucial for effectiveness
+- Sessions should be 30-45 minutes for optimal engagement
+- Combine with other therapies for maximum benefit`,
           citations: [
-            'Nordgren, L., & Engström, G. (2014). Animal-assisted intervention in dementia: effects on quality of life. Clinical nursing research, 23(1), 7-19.',
-            'Olsen, C., Pedersen, I., Bergland, A., Enders‐Slegers, M. J., Jøranson, N., Calogiuri, G., & Ihlebæk, C. (2016). Differences in quality of life in home‐dwelling persons and nursing home residents with dementia–a cross‐sectional study. BMC geriatrics, 16(1), 1-11.',
+            'Alzheimer\'s Association. Music and Memory. https://www.alz.org/help-support/caregiving/daily-care/music',
             'https://www.alz.org/professionals/health-systems-clinicians/dementia-care-practice-recommendations'
           ],
-          dateAdded: '2024-01-18',
+          dateAdded: new Date().toISOString(),
           featured: false
         },
         {
-          id: '5',
-          title: 'Reminiscence Therapy: Celebrating Life Stories',
-          category: 'Reminiscence Therapy',
-          summary: 'Structured reminiscence activities help seniors maintain identity, process life experiences, and share wisdom with others.',
-          content: `Reminiscence therapy taps into seniors' rich life experiences, using memory as a therapeutic tool to enhance self-esteem, reduce depression, and strengthen social connections. This approach validates seniors' life stories while providing cognitive stimulation.
+          id: 'pet-therapy-1',
+          title: 'Animal-Assisted Therapy Benefits',
+          category: 'Therapeutic Activities',
+          summary: 'Pet therapy provides emotional support, reduces stress, and improves social interaction among seniors in care facilities.',
+          content: `## Animal-Assisted Therapy Research
 
-## Theoretical Foundation:
-Reminiscence therapy is based on the understanding that sharing and processing life memories helps maintain identity and find meaning in current circumstances. For seniors with dementia, it can access preserved long-term memories even when recent memory is impaired.
+Pet therapy has demonstrated remarkable benefits for seniors across multiple domains of health and well-being.
 
-## Program Formats:
-1. **Life Story Books**: Creating personalized books with photos, memories, and achievements
-2. **Memory Boxes**: Collections of meaningful objects that trigger specific memories
-3. **Timeline Activities**: Mapping personal and historical events from residents' lives
-4. **Themed Discussions**: Exploring topics like "First Jobs," "Wedding Days," or "Family Traditions"
-5. **Intergenerational Sharing**: Pairing seniors with younger visitors to share stories
+### Therapeutic Benefits:
+- **Stress Reduction**: 23% decrease in cortisol levels after pet interactions
+- **Blood Pressure**: Significant reductions in hypertension
+- **Social Interaction**: Pets serve as conversation starters and social facilitators
+- **Purpose and Routine**: Caring activities provide meaning and structure
 
-## Cognitive Benefits:
-- **Memory Preservation**: Regular practice accessing memories helps maintain cognitive function
-- **Identity Maintenance**: Sharing life stories reinforces sense of self and personal value
-- **Language Skills**: Storytelling exercises verbal communication abilities
-- **Problem-Solving**: Reflecting on past challenges and solutions builds confidence
+### Program Types:
+1. **Resident Pets**: Cats, birds, or fish as permanent facility residents
+2. **Therapy Visits**: Trained dogs and handlers for regular sessions
+3. **Robotic Pets**: Technology alternatives for seniors with allergies
+4. **Pet Care Activities**: Grooming, feeding, and basic care involvement
+5. **Outdoor Programs**: Bird watching and garden wildlife observation
 
-## Emotional Outcomes:
-Reminiscence therapy helps seniors process unresolved feelings, celebrate achievements, and find peace with life transitions. The validation of their experiences through active listening builds self-worth and dignity.
-
-## Implementation Strategies:
-- **Individual Sessions**: One-on-one time for deeply personal memories
-- **Group Sharing**: Themed group discussions that encourage social interaction
-- **Family Involvement**: Include family members in memory-sharing activities
-- **Cultural Sensitivity**: Respect diverse backgrounds and experiences
-- **Documentation**: Create lasting records of shared stories for ongoing enjoyment
-
-## Research Outcomes:
-Clinical trials demonstrate that structured reminiscence therapy reduces depression scores by 32%, improves cognitive function measures by 25%, and increases social engagement by 41% among participants.`,
+### Implementation Guidelines:
+- Ensure all animals are properly trained and certified
+- Consider allergies and phobias among residents
+- Maintain strict hygiene and safety protocols
+- Document therapeutic outcomes and progress`,
           citations: [
-            'Woods, B., Spector, A., Jones, C., Orrell, M., & Davies, S. (2005). Reminiscence therapy for dementia. Cochrane Database of Systematic Reviews, (2).',
-            'Pinquart, M., & Forstmeier, S. (2012). Effects of reminiscence interventions on psychosocial outcomes: A meta-analysis. Aging & mental health, 16(5), 541-558.',
-            'https://www.alz.org/professionals/health-systems-clinicians/dementia-care-practice-recommendations'
+            'Beetz, A., et al. (2012). Psychosocial and psychophysiological effects of human-animal interactions. Frontiers in Psychology, 3, 234.',
+            'Pet Partners. Benefits of Animal-Assisted Interventions. https://petpartners.org/learn/benefits/'
           ],
-          dateAdded: '2024-01-19',
+          dateAdded: new Date().toISOString(),
           featured: false
         }
       ]
+      
       setArticles(defaultArticles)
     }
-  }, [articles.length, setArticles])
+  }, [setArticles])
 
-  const categories = ['all', 'Social Engagement', 'Laughter Therapy', 'Music Therapy', 'Pet Therapy', 'Reminiscence Therapy']
+  const categories = ['all', 'Social Engagement', 'Therapeutic Activities', 'Cognitive Health', 'Physical Wellness', 'Family Connection']
 
   const filteredArticles = selectedCategory === 'all' 
     ? articles 
     : articles.filter(article => article.category === selectedCategory)
 
-  const featuredArticles = articles.filter(article => article.featured)
-  const latestArticles = [...articles]
-    .sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime())
-    .slice(0, 3)
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'Social Engagement': return <Users className="w-5 h-5" />
-      case 'Laughter Therapy': return <Smile className="w-5 h-5" />
-      case 'Music Therapy': return <Music className="w-5 h-5" />
-      case 'Pet Therapy': return <Heart className="w-5 h-5" />
-      case 'Reminiscence Therapy': return <Brain className="w-5 h-5" />
-      default: return <BookOpen className="w-5 h-5" />
+  const handleAddArticle = () => {
+    if (newArticle.title && newArticle.content) {
+      const article: Article = {
+        id: Date.now().toString(),
+        title: newArticle.title || '',
+        category: newArticle.category || 'General',
+        summary: newArticle.summary || '',
+        content: newArticle.content || '',
+        citations: newArticle.citations || [],
+        dateAdded: new Date().toISOString(),
+        featured: newArticle.featured || false
+      }
+      
+      setArticles(currentArticles => [...currentArticles, article])
+      setNewArticle({
+        title: '',
+        category: '',
+        summary: '',
+        content: '',
+        citations: [],
+        featured: false
+      })
     }
   }
 
-  if (showAdmin) {
-    return <AdminPanel articles={articles} setArticles={setArticles} onBack={() => setShowAdmin(false)} />
+  const handleDeleteArticle = (id: string) => {
+    setArticles(currentArticles => currentArticles.filter(article => article.id !== id))
+  }
+
+  const handleEditArticle = (id: string) => {
+    const article = articles.find(a => a.id === id)
+    if (article) {
+      setNewArticle(article)
+      setEditingId(id)
+    }
+  }
+
+  const handleUpdateArticle = () => {
+    if (editingId && newArticle.title && newArticle.content) {
+      setArticles(currentArticles => 
+        currentArticles.map(article => 
+          article.id === editingId 
+            ? { ...article, ...newArticle, id: editingId }
+            : article
+        )
+      )
+      setEditingId(null)
+      setNewArticle({
+        title: '',
+        category: '',
+        summary: '',
+        content: '',
+        citations: [],
+        featured: false
+      })
+    }
   }
 
   return (
     <div className="min-h-screen premium-gradient">
-      {/* Header */}
-      <header className="premium-card border-b">
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="sm"
-                onClick={() => onNavigate('home')}
-                className="text-muted-foreground hover:text-foreground"
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <Logo size="lg" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 metallic-blue">
+            Senior Happiness & Engagement Resources
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Evidence-based strategies, research, and practical guides for enhancing joy and well-being in senior care facilities and memory care units.
+          </p>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex flex-wrap gap-4 mb-8 justify-between items-center">
+          <Button 
+            onClick={() => onNavigate('home')} 
+            variant="outline" 
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft size={20} />
+            Back to Home
+          </Button>
+          
+          <Button
+            onClick={() => setShowAdmin(!showAdmin)}
+            variant={showAdmin ? "default" : "outline"}
+            className="flex items-center gap-2"
+          >
+            <Settings size={20} />
+            {showAdmin ? 'Hide Admin' : 'Admin Panel'}
+          </Button>
+        </div>
+
+        {/* Category Filter */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                variant={selectedCategory === category ? "default" : "outline"}
+                className="capitalize"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
+                {category === 'all' ? 'All Categories' : category}
               </Button>
-              <Separator orientation="vertical" className="h-6" />
-              <Logo className="h-8" />
-          <div cla
-              <Butt
-                variant={selectedCategory === ca
-                className={sele
-                {catego
-                    <BookOpen clas
-             
-                  <>
-                    <span
-                )}
             ))}
-        </sect
-        {/* All
+          </div>
+        </div>
 
-              <Card key={article.id} className="premi
-                  <div class
-                      <div className="flex 
-                        <Badge variant="secondary">
-                        </Badge>
-                          <Badge variant="default" className="b
-                          </Badge>
-                 
-                        {article.title}
-                
-                  <CardDescription className="text-muted-foreground">
-                  </CardDescription>
-                <CardContent>
-              
-              
-
-                    <h4 className
-                      {article.citations.
-                          <span class
+        {/* Admin Panel */}
+        {showAdmin && (
+          <Card className="mb-8 premium-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Plus size={24} />
+                {editingId ? 'Edit Article' : 'Add New Resource'}
+              </CardTitle>
+              <CardDescription>
+                Add or edit research articles, activity guides, and evidence-based resources.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Title</label>
+                  <Input
+                    value={newArticle.title || ''}
+                    onChange={(e) => setNewArticle(prev => ({ ...prev, title: e.target.value }))}
+                    placeholder="Article title"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Category</label>
+                  <Select 
+                    value={newArticle.category || ''} 
+                    onValueChange={(value) => setNewArticle(prev => ({ ...prev, category: value }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.filter(cat => cat !== 'all').map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
                       ))}
-                    <div className="text-xs text-muted-fore
-                    </div>
-                <
-            ))}
-        </section>
-        {filteredArticles.length === 0 && (
-            <BookOpen classNam
-            <p className="text-muted-foreground">
-                ? 'No articles have been added
-            </p>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-2">Summary</label>
+                <Textarea
+                  value={newArticle.summary || ''}
+                  onChange={(e) => setNewArticle(prev => ({ ...prev, summary: e.target.value }))}
+                  placeholder="Brief summary of the article"
+                  rows={3}
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-2">Content (Markdown supported)</label>
+                <Textarea
+                  value={newArticle.content || ''}
+                  onChange={(e) => setNewArticle(prev => ({ ...prev, content: e.target.value }))}
+                  placeholder="Full article content with research, strategies, and citations"
+                  rows={10}
+                />
+              </div>
+
+              <div className="flex gap-4">
+                <Button 
+                  onClick={editingId ? handleUpdateArticle : handleAddArticle}
+                  className="btn-silver"
+                >
+                  {editingId ? 'Update Article' : 'Add Article'}
+                </Button>
+                {editingId && (
+                  <Button 
+                    onClick={() => {
+                      setEditingId(null)
+                      setNewArticle({
+                        title: '',
+                        category: '',
+                        summary: '',
+                        content: '',
+                        citations: [],
+                        featured: false
+                      })
+                    }}
+                    variant="outline"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
         )}
+
+        {/* Featured Articles */}
+        {articles.some(article => article.featured) && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+              <Sparkles size={32} className="text-yellow-500" />
+              Featured Resources
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {articles.filter(article => article.featured).map((article) => (
+                <Card key={article.id} className="premium-card border-2 border-yellow-200">
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-xl mb-2">{article.title}</CardTitle>
+                        <CardDescription className="text-sm bg-yellow-100 px-2 py-1 rounded">
+                          {article.category}
+                        </CardDescription>
+                      </div>
+                      {showAdmin && (
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleEditArticle(article.id)}
+                          >
+                            <Edit size={16} />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => handleDeleteArticle(article.id)}
+                          >
+                            <Trash2 size={16} />
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">{article.summary}</p>
+                    <div className="prose max-w-none">
+                      <div dangerouslySetInnerHTML={{ 
+                        __html: article.content
+                          .replace(/##\s(.*)/g, '<h3 class="text-lg font-semibold mt-4 mb-2">$1</h3>')
+                          .replace(/###\s(.*)/g, '<h4 class="text-md font-medium mt-3 mb-2">$1</h4>')
+                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                          .replace(/\n/g, '<br>')
+                      }} />
+                    </div>
+                    {article.citations.length > 0 && (
+                      <div className="mt-4 pt-4 border-t">
+                        <h4 className="font-semibold mb-2">References:</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          {article.citations.map((citation, index) => (
+                            <li key={index} className="break-words">
+                              {citation.startsWith('http') ? (
+                                <a 
+                                  href={citation} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline"
+                                >
+                                  {citation}
+                                </a>
+                              ) : (
+                                citation
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <Separator className="my-8" />
+
+        {/* All Articles */}
+        <div>
+          <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+            <BookOpen size={32} />
+            All Resources
+            <span className="text-lg font-normal text-muted-foreground">
+              ({filteredArticles.length} articles)
+            </span>
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            {filteredArticles.map((article) => (
+              <Card key={article.id} className="premium-card">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-lg mb-2">{article.title}</CardTitle>
+                      <CardDescription className="text-sm bg-blue-100 px-2 py-1 rounded">
+                        {article.category}
+                      </CardDescription>
+                    </div>
+                    {showAdmin && (
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEditArticle(article.id)}
+                        >
+                          <Edit size={16} />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => handleDeleteArticle(article.id)}
+                        >
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4">{article.summary}</p>
+                  <div className="prose max-w-none text-sm">
+                    <div dangerouslySetInnerHTML={{ 
+                      __html: article.content
+                        .substring(0, 300)
+                        .replace(/##\s(.*)/g, '<h3 class="text-md font-semibold mt-2 mb-1">$1</h3>')
+                        .replace(/###\s(.*)/g, '<h4 class="text-sm font-medium mt-2 mb-1">$1</h4>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\n/g, '<br>')
+                    }} />
+                    {article.content.length > 300 && <span>...</span>}
+                  </div>
+                  {article.citations.length > 0 && (
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-xs text-muted-foreground">
+                        {article.citations.length} citation{article.citations.length !== 1 ? 's' : ''}
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <div className="premium-card p-8 max-w-2xl mx-auto">
+            <Heart size={48} className="mx-auto mb-4 heart-icon" />
+            <h3 className="text-2xl font-bold mb-4">Ready to Connect Your Loved One?</h3>
+            <p className="text-muted-foreground mb-6">
+              Use these evidence-based strategies while we help bridge the technology gap for meaningful family connections.
+            </p>
+            <Button 
+              onClick={() => onNavigate('register')} 
+              className="btn-silver text-lg px-8 py-4"
+            >
+              Sign Up to Connect Today
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
+  )
 }
+
 export default SeniorResourcesPage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
