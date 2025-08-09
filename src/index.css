@@ -8,42 +8,73 @@
 }
 
 :root {
-  --background: oklch(0.98 0.01 220);
-  --foreground: oklch(0.25 0.05 230);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.05 230);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.05 230);
-  --primary: oklch(0.45 0.15 230);
-  --primary-foreground: oklch(0.98 0.01 220);
-  --secondary: oklch(0.85 0.02 220);
-  --secondary-foreground: oklch(0.25 0.05 230);
-  --muted: oklch(0.9 0.01 220);
-  --muted-foreground: oklch(0.55 0.01 200);
-  --accent: oklch(0.75 0.12 80);
-  --accent-foreground: oklch(0.98 0.01 220);
+  /* Warm gradient background inspired by the uploaded assets */
+  --background: linear-gradient(135deg, #f5f2ff 0%, #e8e3ff 25%, #f0e6ff 50%, #fff0f5 75%, #ffeaa7 100%);
+  --background-solid: oklch(0.97 0.02 300);
+  --foreground: oklch(0.22 0.02 240);
+  
+  /* Metallic silver card surfaces with depth */
+  --card: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  --card-solid: oklch(0.95 0.005 240);
+  --card-foreground: oklch(0.25 0.02 240);
+  
+  --popover: oklch(0.98 0.005 240);
+  --popover-foreground: oklch(0.25 0.02 240);
+  
+  /* Premium silver primary with depth */
+  --primary: linear-gradient(145deg, #8e9aaf 0%, #6c757d 50%, #495057 100%);
+  --primary-solid: oklch(0.55 0.01 240);
+  --primary-foreground: oklch(0.98 0.005 240);
+  
+  /* Soft secondary with silver tint */
+  --secondary: linear-gradient(145deg, #e9ecef 0%, #dee2e6 50%, #ced4da 100%);
+  --secondary-solid: oklch(0.88 0.005 240);
+  --secondary-foreground: oklch(0.28 0.02 240);
+  
+  /* Muted silver tones */
+  --muted: oklch(0.92 0.005 250);
+  --muted-foreground: oklch(0.5 0.01 240);
+  
+  /* Warm golden accent inspired by the assets */
+  --accent: linear-gradient(145deg, #ffd93d 0%, #ff9f43 50%, #ee5a24 100%);
+  --accent-solid: oklch(0.75 0.12 70);
+  --accent-foreground: oklch(0.98 0.005 240);
+  
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.01 220);
-  --border: oklch(0.88 0.01 220);
-  --input: oklch(0.88 0.01 220);
-  --ring: oklch(0.45 0.15 230);
-  --radius: 0.75rem;
+  
+  /* Subtle metallic borders */
+  --border: oklch(0.85 0.005 240);
+  --input: oklch(0.9 0.005 240);
+  --ring: oklch(0.55 0.01 240);
+  
+  /* Increased radius for premium feel */
+  --radius: 1rem;
+  
+  /* Metallic silver text effects */
+  --text-shadow-silver: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(255,255,255,0.8);
+  --text-shadow-gold: 0 2px 4px rgba(238, 90, 36, 0.3), 0 1px 2px rgba(255, 217, 61, 0.5);
+  
+  /* Box shadows for depth */
+  --shadow-silver: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-gold: 0 8px 25px -5px rgba(238, 90, 36, 0.3), 0 4px 6px -2px rgba(255, 217, 61, 0.2);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 @theme {
-  --color-background: var(--background);
+  --color-background: var(--background-solid);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
+  --color-card: var(--card-solid);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
+  --color-primary: var(--primary-solid);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
+  --color-secondary: var(--secondary-solid);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
+  --color-accent: var(--accent-solid);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -62,4 +93,71 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   line-height: 1.6;
+  background: var(--background);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Premium metallic effects for key elements */
+.metallic-silver {
+  background: var(--card);
+  box-shadow: var(--shadow-silver);
+  text-shadow: var(--text-shadow-silver);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.metallic-gold {
+  background: var(--accent);
+  box-shadow: var(--shadow-gold);
+  text-shadow: var(--text-shadow-gold);
+  border: 1px solid rgba(255, 217, 61, 0.3);
+}
+
+.premium-gradient {
+  background: var(--background);
+}
+
+/* Enhanced button styles for metallic theme */
+.btn-silver {
+  background: var(--primary);
+  box-shadow: var(--shadow-silver);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-silver:hover {
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-gold {
+  background: var(--accent);
+  box-shadow: var(--shadow-gold);
+  border: 1px solid rgba(255, 217, 61, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gold:hover {
+  box-shadow: 0 12px 35px -5px rgba(238, 90, 36, 0.4), 0 6px 8px -2px rgba(255, 217, 61, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Metallic card enhancement */
+.premium-card {
+  background: var(--card);
+  box-shadow: var(--shadow-silver);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Heart icon styling to match the intertwined hearts theme */
+.heart-icon {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)) drop-shadow(0 1px 2px rgba(255,255,255,0.8));
+  transition: all 0.3s ease;
+}
+
+.heart-icon:hover {
+  filter: drop-shadow(0 4px 8px rgba(238, 90, 36, 0.3)) drop-shadow(0 2px 4px rgba(255, 217, 61, 0.5));
+  transform: scale(1.05);
 }

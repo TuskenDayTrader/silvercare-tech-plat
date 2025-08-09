@@ -88,13 +88,24 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center p-6">
-        <Card className="max-w-2xl w-full">
+      <div className="min-h-screen premium-gradient flex items-center justify-center p-6">
+        <Card className="premium-card max-w-2xl w-full">
           <CardContent className="p-12 text-center">
-            <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Check size={40} className="text-accent" />
+            <div className="w-20 h-20 metallic-gold rounded-full flex items-center justify-center mx-auto mb-6">
+              <Check size={40} className="text-accent-foreground heart-icon" />
             </div>
-            <h2 className="text-3xl font-bold text-primary mb-4">Thank You!</h2>
+            <h2 
+              className="text-3xl font-bold mb-4"
+              style={{
+                background: 'linear-gradient(145deg, #495057 0%, #6c757d 50%, #8e9aaf 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                textShadow: 'var(--text-shadow-silver)'
+              }}
+            >
+              Thank You!
+            </h2>
             <p className="text-lg text-muted-foreground mb-6">
               We've received your registration for <span className="font-semibold text-foreground">{formData.lovedOneName}</span>. 
               Our team will contact you at <span className="font-semibold text-foreground">{formData.contactEmail}</span> within 24 hours 
@@ -104,11 +115,11 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
               Remember, we handle all the technology—your loved one just needs to bring their beautiful smile!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={() => onNavigate('home')} variant="outline" size="lg">
+              <Button onClick={() => onNavigate('home')} variant="outline" size="lg" className="border-2 hover:bg-secondary/50">
                 <ArrowLeft size={20} className="mr-2" />
                 Back to Home
               </Button>
-              <Button onClick={() => onNavigate('gallery')} size="lg">
+              <Button onClick={() => onNavigate('gallery')} size="lg" className="btn-gold">
                 See Happy Moments
               </Button>
             </div>
@@ -119,14 +130,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+    <div className="min-h-screen premium-gradient">
       <header className="container mx-auto px-6 py-8">
         <div className="flex items-center gap-4 mb-4">
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={() => onNavigate('home')}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-300"
           >
             <ArrowLeft size={20} className="mr-2" />
             Back to Home
@@ -138,22 +149,44 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
       <main className="container mx-auto px-6 pb-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-primary mb-4">Register to Connect</h1>
+            <h1 
+              className="text-4xl font-bold mb-4"
+              style={{
+                background: 'linear-gradient(145deg, #495057 0%, #6c757d 50%, #8e9aaf 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                textShadow: 'var(--text-shadow-silver)'
+              }}
+            >
+              Register to Connect
+            </h1>
             <p className="text-lg text-muted-foreground">
               We handle all tech setup. Just provide details and pick a time that works best for your family.
             </p>
           </div>
 
-          <Card>
+          <Card className="premium-card">
             <CardHeader>
-              <CardTitle className="text-2xl text-primary">Connection Details</CardTitle>
+              <CardTitle 
+                className="text-2xl"
+                style={{
+                  background: 'linear-gradient(145deg, #495057 0%, #6c757d 50%, #8e9aaf 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  textShadow: 'var(--text-shadow-silver)'
+                }}
+              >
+                Connection Details
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="family-member-name" className="text-base font-medium flex items-center gap-2">
-                      <User size={18} />
+                      <User size={18} className="heart-icon" />
                       Your Name *
                     </Label>
                     <Input
@@ -161,7 +194,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                       placeholder="Enter your full name"
                       value={formData.familyMemberName}
                       onChange={(e) => handleInputChange('familyMemberName', e.target.value)}
-                      className={`text-lg py-3 ${errors.familyMemberName ? 'border-destructive' : ''}`}
+                      className={`text-lg py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.familyMemberName ? 'border-destructive' : ''}`}
                     />
                     {errors.familyMemberName && (
                       <p className="text-destructive text-sm">{errors.familyMemberName}</p>
@@ -170,7 +203,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
 
                   <div className="space-y-2">
                     <Label htmlFor="loved-one-name" className="text-base font-medium flex items-center gap-2">
-                      <User size={18} />
+                      <User size={18} className="heart-icon" />
                       Your Loved One's Name *
                     </Label>
                     <Input
@@ -178,7 +211,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                       placeholder="Enter their full name"
                       value={formData.lovedOneName}
                       onChange={(e) => handleInputChange('lovedOneName', e.target.value)}
-                      className={`text-lg py-3 ${errors.lovedOneName ? 'border-destructive' : ''}`}
+                      className={`text-lg py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.lovedOneName ? 'border-destructive' : ''}`}
                     />
                     {errors.lovedOneName && (
                       <p className="text-destructive text-sm">{errors.lovedOneName}</p>
@@ -188,7 +221,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
 
                 <div className="space-y-2">
                   <Label htmlFor="loved-one-location" className="text-base font-medium flex items-center gap-2">
-                    <MapPin size={18} />
+                    <MapPin size={18} className="heart-icon" />
                     Location (Care Facility or Home Address) *
                   </Label>
                   <Textarea
@@ -196,7 +229,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                     placeholder="Enter the care facility name and address, or home address"
                     value={formData.lovedOneLocation}
                     onChange={(e) => handleInputChange('lovedOneLocation', e.target.value)}
-                    className={`text-lg min-h-[80px] ${errors.lovedOneLocation ? 'border-destructive' : ''}`}
+                    className={`text-lg min-h-[80px] transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.lovedOneLocation ? 'border-destructive' : ''}`}
                   />
                   {errors.lovedOneLocation && (
                     <p className="text-destructive text-sm">{errors.lovedOneLocation}</p>
@@ -206,7 +239,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="contact-email" className="text-base font-medium flex items-center gap-2">
-                      <Mail size={18} />
+                      <Mail size={18} className="heart-icon" />
                       Your Email Address *
                     </Label>
                     <Input
@@ -215,7 +248,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                       placeholder="your.email@example.com"
                       value={formData.contactEmail}
                       onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-                      className={`text-lg py-3 ${errors.contactEmail ? 'border-destructive' : ''}`}
+                      className={`text-lg py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.contactEmail ? 'border-destructive' : ''}`}
                     />
                     {errors.contactEmail && (
                       <p className="text-destructive text-sm">{errors.contactEmail}</p>
@@ -224,14 +257,14 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
 
                   <div className="space-y-2">
                     <Label className="text-base font-medium flex items-center gap-2">
-                      <Clock size={18} />
+                      <Clock size={18} className="heart-icon" />
                       Preferred Connection Time (EST) *
                     </Label>
                     <Select 
                       value={formData.preferredTime} 
                       onValueChange={(value) => handleInputChange('preferredTime', value)}
                     >
-                      <SelectTrigger className={`text-lg py-3 ${errors.preferredTime ? 'border-destructive' : ''}`}>
+                      <SelectTrigger className={`text-lg py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.preferredTime ? 'border-destructive' : ''}`}>
                         <SelectValue placeholder="Select a time slot" />
                       </SelectTrigger>
                       <SelectContent className="max-h-60">
@@ -275,7 +308,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                     placeholder="Any special requests, accessibility needs, or preferred days of the week?"
                     value={formData.additionalNotes}
                     onChange={(e) => handleInputChange('additionalNotes', e.target.value)}
-                    className="text-lg min-h-[80px]"
+                    className="text-lg min-h-[80px] transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
@@ -283,7 +316,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate }) => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full text-lg py-6 bg-accent hover:bg-accent/90 text-accent-foreground"
+                    className="w-full text-lg py-6 btn-gold font-semibold"
                   >
                     <Calendar size={20} className="mr-2" />
                     Submit Registration

@@ -63,25 +63,25 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'Video Call':
-        return <VideoCamera size={20} className="text-primary" />
+        return <VideoCamera size={20} className="heart-icon" style={{ color: '#6c757d' }} />
       case 'Family Connection':
-        return <Users size={20} className="text-accent" />
+        return <Users size={20} className="heart-icon" style={{ color: '#ff9f43' }} />
       case 'Special Occasions':
-        return <Heart size={20} className="text-destructive" />
+        return <Heart size={20} className="heart-icon" style={{ color: '#ffd93d' }} />
       default:
-        return <Phone size={20} className="text-muted-foreground" />
+        return <Phone size={20} className="heart-icon" style={{ color: '#8e9aaf' }} />
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+    <div className="min-h-screen premium-gradient">
       <header className="container mx-auto px-6 py-8">
         <div className="flex items-center gap-4 mb-4">
           <Button 
             variant="ghost" 
             size="sm" 
             onClick={() => onNavigate('home')}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-300"
           >
             <ArrowLeft size={20} className="mr-2" />
             Back to Home
@@ -92,7 +92,18 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
 
       <main className="container mx-auto px-6 pb-24">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-primary mb-6">Moments of Joy</h1>
+          <h1 
+            className="text-5xl font-bold mb-6"
+            style={{
+              background: 'linear-gradient(145deg, #495057 0%, #6c757d 50%, #8e9aaf 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              textShadow: 'var(--text-shadow-silver)'
+            }}
+          >
+            Moments of Joy
+          </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Real families, real connections, real smiles. See how SilverCare Tech transforms 
             the lives of seniors and their loved ones every single day.
@@ -101,18 +112,29 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
           {galleryImages.map((image) => (
-            <Card key={image.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card key={image.id} className="premium-card group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
-                <div className="aspect-square bg-gradient-to-br from-secondary to-muted rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                  <div className="text-6xl text-primary/20 group-hover:text-primary/30 transition-colors">
+                <div className="aspect-square metallic-silver rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                  <div className="text-6xl opacity-30 group-hover:opacity-50 transition-all duration-300 heart-icon">
                     {getCategoryIcon(image.category)}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-lg text-primary">{image.title}</h3>
+                    <h3 
+                      className="font-semibold text-lg"
+                      style={{
+                        background: 'linear-gradient(145deg, #495057 0%, #6c757d 100%)',
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        color: 'transparent'
+                      }}
+                    >
+                      {image.title}
+                    </h3>
                     {getCategoryIcon(image.category)}
                   </div>
                   
@@ -121,7 +143,14 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
                   </p>
                   
                   <div className="pt-2">
-                    <span className="inline-block bg-secondary px-3 py-1 rounded-full text-xs font-medium text-secondary-foreground">
+                    <span 
+                      className="inline-block px-3 py-1 rounded-full text-xs font-medium metallic-gold"
+                      style={{
+                        background: 'linear-gradient(145deg, #ffd93d 0%, #ff9f43 100%)',
+                        color: 'white',
+                        textShadow: 'var(--text-shadow-gold)'
+                      }}
+                    >
                       {image.category}
                     </span>
                   </div>
@@ -131,8 +160,17 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
           ))}
         </div>
 
-        <section className="bg-card rounded-2xl p-12 text-center shadow-lg">
-          <h2 className="text-4xl font-bold text-primary mb-6">
+        <section className="premium-card rounded-2xl p-12 text-center">
+          <h2 
+            className="text-4xl font-bold mb-6"
+            style={{
+              background: 'linear-gradient(145deg, #495057 0%, #6c757d 50%, #8e9aaf 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              textShadow: 'var(--text-shadow-silver)'
+            }}
+          >
             Your Story Could Be Next
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -143,24 +181,44 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
           
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-primary">1</span>
+              <div className="w-16 h-16 metallic-silver rounded-full flex items-center justify-center mx-auto mb-4">
+                <span 
+                  className="text-2xl font-bold"
+                  style={{
+                    background: 'linear-gradient(145deg, #495057 0%, #6c757d 100%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    color: 'transparent'
+                  }}
+                >
+                  1
+                </span>
               </div>
               <h3 className="font-semibold text-lg mb-2">Easy Registration</h3>
               <p className="text-muted-foreground">Simple form, no tech knowledge needed</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent">2</span>
+              <div className="w-16 h-16 metallic-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-accent-foreground">2</span>
               </div>
               <h3 className="font-semibold text-lg mb-2">We Setup Everything</h3>
               <p className="text-muted-foreground">Professional installation and training</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-destructive">3</span>
+              <div className="w-16 h-16 metallic-silver rounded-full flex items-center justify-center mx-auto mb-4">
+                <span 
+                  className="text-2xl font-bold"
+                  style={{
+                    background: 'linear-gradient(145deg, #495057 0%, #6c757d 100%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    color: 'transparent'
+                  }}
+                >
+                  3
+                </span>
               </div>
               <h3 className="font-semibold text-lg mb-2">Start Connecting</h3>
               <p className="text-muted-foreground">Immediate joy and lasting bonds</p>
@@ -169,7 +227,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
 
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground"
+            className="btn-gold text-lg px-8 py-6 font-semibold"
             onClick={() => onNavigate('register')}
           >
             <Heart size={20} className="mr-2" />
