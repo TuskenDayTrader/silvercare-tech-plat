@@ -11,15 +11,15 @@
   /* Warm gradient background inspired by the uploaded assets */
   --background: linear-gradient(135deg, #f5f2ff 0%, #e8e3ff 25%, #f0e6ff 50%, #fff0f5 75%, #ffeaa7 100%);
   --background-solid: oklch(0.97 0.02 300);
-  --foreground: oklch(0.22 0.02 240);
+  --foreground: oklch(0.18 0.02 240);
   
   /* Metallic silver card surfaces with depth */
   --card: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
   --card-solid: oklch(0.95 0.005 240);
-  --card-foreground: oklch(0.25 0.02 240);
+  --card-foreground: oklch(0.21 0.02 240);
   
   --popover: oklch(0.98 0.005 240);
-  --popover-foreground: oklch(0.25 0.02 240);
+  --popover-foreground: oklch(0.21 0.02 240);
   
   /* Premium silver primary with depth */
   --primary: linear-gradient(145deg, #8e9aaf 0%, #6c757d 50%, #495057 100%);
@@ -29,11 +29,11 @@
   /* Soft secondary with silver tint */
   --secondary: linear-gradient(145deg, #e9ecef 0%, #dee2e6 50%, #ced4da 100%);
   --secondary-solid: oklch(0.88 0.005 240);
-  --secondary-foreground: oklch(0.28 0.02 240);
+  --secondary-foreground: oklch(0.24 0.02 240);
   
   /* Muted silver tones */
   --muted: oklch(0.92 0.005 250);
-  --muted-foreground: oklch(0.5 0.01 240);
+  --muted-foreground: oklch(0.46 0.01 240);
   
   /* Warm golden accent inspired by the assets */
   --accent: linear-gradient(145deg, #ffd93d 0%, #ff9f43 50%, #ee5a24 100%);
