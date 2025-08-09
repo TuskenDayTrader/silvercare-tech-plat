@@ -10,7 +10,7 @@ import AdminPanel from '@/components/AdminPanel'
 import type { TranslationContent } from '@/lib/translations'
 
 interface NavigationProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'admin') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
   language: 'en' | 'es' | 'zh'
   t: TranslationContent
 }
