@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'rigger, SelectValue } from '@/components/ui/select'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useKV } from '@github/spark/hooks'
 
-  id: string
 
   content: string
   dateAdded: string
@@ -21,9 +20,6 @@ interface Article {
   summary: string
   content: string
   citations: string[]
-  dateAdded: string
-  featured: boolean
-}
 
 const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, t }) => {
   const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
@@ -41,6 +37,10 @@ const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, 
 
 Laughter triggers the release of endorphins, reduce
 ### Clinical Benefi
+- **Physical Health**: Improved 
+- **Stress Reduction**: Lower cortisol and
+### Imple
+2. **Humor Therapy Sessions**: Guide
 - **Physical Health**: Improved 
 - **Stress Reduction**: Lower cortisol and
 ### Imple
@@ -65,10 +65,6 @@ Studies from the University of Maryland show that laughter increases blood flow 
 ### Best Practices:
 - Sessions should be 30-45 minutes for optimal engagement
 
-            'https://www.al
-          dateAdded: new Date().toISOString(),
-        },
-          id: 'pet-therapy-1',
           category: 'Therapeutic Activities',
           ],
 Pet therapy has demonstrated remarkable benefi
