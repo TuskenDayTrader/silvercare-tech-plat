@@ -10,6 +10,13 @@ interface Article {
   summary: string
   content: string
   citations: string[]
+}
+
+interface NavigationProps {
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
+  language: string
+  t: any
+}
 
 const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, t }) => {
   const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
