@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, Ca
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
-import { Heart, Home, Sparkles, BookOpen, Trash2, Edit3, Plus } from '@phosphor-icons/react'
 import { useKV } from '@github/spark/hooks'
-import { toast } from 'sonner'
 
-interface Article {
   id: string
-  title: string
   category: string
-  summary: string
   content: string
-  citations: string[]
-  dateAdded: number
-  featured: boolean
-}
 
-interface NavigationProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
-  language: string
-  t: any
 }
+interface Na
+  language: str
+}
+const SeniorResou
+  const [showAdmi
+  const [editingId, s
+    title: '',
+    summary: '',
+ 
 
-const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, t }) => {
+  const categories = [
+    'Laughter Therapy', 
+    'Pet Therapy',
+    'Phy
+ 
+
+  useEffect(() => {
   const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
   const [showAdmin, setShowAdmin] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -139,14 +139,14 @@ Music has a unique ability to reach people with dementia and other cognitive imp
 - **Motor Skills**: Rhythm and movement improve coordination
 
 ### Program Implementation:
-1. **Personalized Playlists**: Use music from seniors' youth (ages 15-25)
+- **Emotional Support**: Provides comfort and reduces feelings of lonelin
 2. **Group Sing-Alongs**: Weekly sessions with familiar songs
-3. **Instrument Play**: Simple percussion and melodic instruments
+1. **Therapy Dog Visits**: Weekly visits from certified therapy d
 4. **Music and Movement**: Combine music with gentle exercise
-5. **Live Performances**: Invite local musicians for interactive concerts
+4. **Pet Care Activities**: Grooming, feeding, and basic care tasks
 
-### Best Practices:
-- Sessions should be 30-45 minutes for optimal engagement
+- Ensure all animal
+- Maintain proper hygiene protocols
 - Use familiar music from participants' era
 - Include both active and passive music experiences
 - Monitor responses and adjust programs accordingly
@@ -155,11 +155,11 @@ Research shows that music therapy can reduce the need for medications in dementi
           citations: [
             'https://www.alz.org/professionals/health-systems-clinicians/dementia-care-practice-recommendations',
             'McDermott, O., et al. (2013). Psychosocial interventions for people with dementia: a synthesis of systematic reviews. Aging & Mental Health, 17(4), 446-451.'
-          ],
+      
           dateAdded: Date.now(),
           featured: false
         },
-        {
+        i
           id: '4',
           title: 'Pet Therapy: Companionship and Healing',
           category: 'Pet Therapy',
@@ -176,7 +176,7 @@ Pet therapy has demonstrated remarkable benefits for seniors, particularly those
 - **Physical Activity**: Walking and caring for pets promotes movement
 - **Emotional Support**: Provides comfort and reduces feelings of loneliness
 
-### Program Types:
+      toast.succes
 1. **Therapy Dog Visits**: Weekly visits from certified therapy dogs
 2. **Therapy Visits**: Trained dogs and handlers for regular interaction
 3. **Resident Pets**: Small animals like birds or fish for continuous companionship
@@ -189,43 +189,43 @@ Pet therapy has demonstrated remarkable benefits for seniors, particularly those
 - Have trained handlers supervise all interactions
 
 Studies show that pet therapy can reduce the need for pain medication and improve overall quality of life.`,
-          citations: [
+        featured: arti
             'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6545674/',
             'Cherniack, E. P., & Cherniack, A. R. (2014). The benefit of pets and animal-assisted therapy to the health of older individuals. Current Gerontology and Geriatrics Research, 2014.'
           ],
           dateAdded: Date.now(),
           featured: false
-        }
+         
       ]
       
       setArticles(defaultArticles)
-    }
+     
   }, [articles.length, setArticles])
 
   const handleAddArticle = () => {
-    if (newArticle.title && newArticle.content) {
+    }
       const article: Article = {
-        id: Date.now().toString(),
+  const filteredArticles = selecte
         title: newArticle.title,
-        category: newArticle.category || 'General',
+
         summary: newArticle.summary || '',
-        content: newArticle.content || '',
+      <div className="max-w-6xl mx-auto px
         citations: newArticle.citations.filter(c => c.trim() !== ''),
         dateAdded: Date.now(),
         featured: newArticle.featured
-      }
-      setArticles(currentArticles => [...currentArticles, article])
+       
+          </h1>
       setNewArticle({
         title: '',
         category: '',
-        summary: '',
+        {/* Navigati
         content: '',
         citations: [''],
         featured: false
       })
       toast.success('Article added successfully!')
     }
-  }
+   
 
   const handleDeleteArticle = (id: string) => {
     setArticles(currentArticles => currentArticles.filter(article => article.id !== id))
@@ -234,8 +234,8 @@ Studies show that pet therapy can reduce the need for pain medication and improv
 
   const handleEditArticle = (id: string) => {
     const article = articles.find(a => a.id === id)
-    if (article) {
-      setEditingId(id)
+            onClic
+            size="sm"
       setNewArticle({
         title: article.title,
         category: article.category,
@@ -245,28 +245,28 @@ Studies show that pet therapy can reduce the need for pain medication and improv
         featured: article.featured
       })
     }
-  }
+   
 
-  const handleUpdateArticle = () => {
+          ))}
     if (editingId && newArticle.title && newArticle.content) {
-      setArticles(currentArticles => 
+        {/* Admin Panel */}
         currentArticles.map(article => 
           article.id === editingId 
             ? { ...article, ...newArticle, citations: newArticle.citations.filter(c => c.trim() !== '') }
-            : article
+                {edit
         )
       )
       setEditingId(null)
-      setNewArticle({
+            <CardCont
         title: '',
-        category: '',
+                  <la
         summary: '',
-        content: '',
+                    
         citations: [''],
-        featured: false
+                </div>
       })
       toast.success('Article updated successfully!')
-    }
+     
   }
 
   const filteredArticles = selectedCategory === 'all' 
@@ -276,15 +276,15 @@ Studies show that pet therapy can reduce the need for pain medication and improv
   return (
     <div className="min-h-screen premium-gradient">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
+                  </Se
         <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
+              <div>
             <Heart size={64} className="heart-icon" />
-          </div>
+                
           <h1 className="text-4xl font-bold text-foreground mb-4 metallic-silver p-4 rounded-lg">
-            Senior Happiness & Engagement Resources
+                  rows={2}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <div>
             Evidence-based strategies, activities, and research to enhance well-being for seniors in care facilities and memory care units.
           </p>
         </div>
@@ -292,22 +292,22 @@ Studies show that pet therapy can reduce the need for pain medication and improv
         {/* Navigation */}
         <div className="flex flex-wrap gap-4 mb-8 justify-center">
           <Button 
-            onClick={() => onNavigate('home')} 
+                  <div key={index} className="f
             variant="outline"
-            className="flex items-center gap-2"
+                      onChange={(e) => {
           >
             <Home size={20} />
             Return Home
-          </Button>
+                   
           <Button
             onClick={() => setShowAdmin(!showAdmin)}
             variant="outline"
             className="flex items-center gap-2"
-          >
+           
             <Plus size={20} />
             {showAdmin ? 'Hide Admin' : 'Admin Panel'}
           </Button>
-        </div>
+              
 
         {/* Category Filter */}
         <div className="flex flex-wrap gap-2 mb-8 justify-center">
@@ -335,44 +335,44 @@ Studies show that pet therapy can reduce the need for pain medication and improv
         {showAdmin && (
           <Card className="mb-8 premium-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+            </h2>
                 <Plus size={24} />
                 {editingId ? 'Edit Article' : 'Add New Resource'}
               </CardTitle>
-              <CardDescription>
+                      <div>
                 {editingId ? 'Update the article information below.' : 'Add evidence-based articles and research to help improve senior well-being.'}
-              </CardDescription>
+                        <CardDes
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Article Title</label>
-                  <Input
+                        
                     value={newArticle.title}
                     onChange={(e) => setNewArticle(prev => ({ ...prev, title: e.target.value }))}
                     placeholder="Enter article title"
-                  />
+                    
                 </div>
-                <div>
+                     
                   <label className="block text-sm font-medium mb-2">Category</label>
-                  <Select 
+                  </CardHe
                     value={newArticle.category}
                     onValueChange={(value) => setNewArticle(prev => ({ ...prev, category: value }))}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
+                          .replace(/
                     <SelectContent>
                       {categories.filter(cat => cat !== 'all').map(category => (
                         <SelectItem key={category} value={category}>
-                          {category}
+                      <div className
                         </SelectItem>
-                      ))}
+                         
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
-              <div>
+                    
+                   
                 <label className="block text-sm font-medium mb-2">Summary</label>
                 <Textarea
                   value={newArticle.summary}
@@ -421,7 +421,7 @@ Studies show that pet therapy can reduce the need for pain medication and improv
               </div>
               <div className="flex gap-4">
                 <Button
-                  onClick={editingId ? handleUpdateArticle : handleAddArticle}
+                        .replace(/## (.*)/g, '<h2 class="font-bold text-xl mt-
                   className="btn-silver"
                 >
                   {editingId ? 'Update Article' : 'Add Article'}
@@ -437,21 +437,21 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                         content: '',
                         citations: [''],
                         featured: false
-                      })
+                        
                     }}
                     variant="outline"
                   >
-                    Cancel Edit
+                      </div>
                   </Button>
-                )}
+                </
               </div>
-            </CardContent>
+          </div>
           </Card>
-        )}
+        {/
 
-        {/* Featured Articles */}
+            <h2 className="text-2
         {filteredArticles.filter(article => article.featured).length > 0 && (
-          <div className="mb-12">
+            </p>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
               <Sparkles size={32} className="text-yellow-500" />
               Featured Resources
@@ -459,7 +459,7 @@ Studies show that pet therapy can reduce the need for pain medication and improv
             <div className="grid gap-6 md:grid-cols-2">
               {filteredArticles.filter(article => article.featured).map(article => (
                 <Card key={article.id} className="premium-card border-2 border-accent">
-                  <CardHeader>
+}
                     <div className="flex justify-between items-start">
                       <div>
                         <CardTitle className="text-lg mb-2">{article.title}</CardTitle>
@@ -482,9 +482,9 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                           >
                             <Trash2 size={16} />
                           </Button>
-                        </div>
+
                       )}
-                    </div>
+
                   </CardHeader>
                   <CardContent>
                     <div className="prose max-w-none text-sm">
@@ -498,7 +498,7 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                           .replace(/\n\n/g, '<br><br>')
                           .slice(0, 500) + (article.content.length > 500 ? '...' : '')
                       }} />
-                    </div>
+
                     {article.citations.length > 0 && (
                       <div className="mt-4">
                         <h4 className="font-semibold text-sm mb-2">References:</h4>
@@ -517,7 +517,7 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                             ) : (
                               <p key={index} className="text-xs text-muted-foreground">{citation}</p>
                             )
-                          ))}
+
                         </div>
                       </div>
                     )}
@@ -525,16 +525,16 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                 </Card>
               ))}
             </div>
-          </div>
+
         )}
 
         {/* All Articles */}
-        <div>
+
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             <BookOpen size={32} className="text-blue-600" />
             <span className="metallic-blue p-2 rounded">
               All Resources
-            </span>
+
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredArticles.filter(article => !article.featured).map(article => (
@@ -548,26 +548,26 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                     </div>
                     {showAdmin && (
                       <div className="flex gap-2">
-                        <Button
+
                           onClick={() => handleEditArticle(article.id)}
                           variant="outline"
                           size="sm"
-                        >
+
                           <Edit3 size={16} />
-                        </Button>
+
                         <Button
                           onClick={() => handleDeleteArticle(article.id)}
                           variant="destructive"
                           size="sm"
                         >
-                          <Trash2 size={16} />
+
                         </Button>
-                      </div>
+
                     )}
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="prose max-w-none text-sm">
+
+
                     <div dangerouslySetInnerHTML={{
                       __html: article.content
                         .replace(/### (.*)/g, '<h3 class="font-semibold text-lg mt-4 mb-2">$1</h3>')
@@ -577,8 +577,8 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                         .replace(/\*(.*?)\*/g, '<em>$1</em>')
                         .replace(/\n\n/g, '<br><br>')
                         .slice(0, 300) + (article.content.length > 300 ? '...' : '')
-                    }} />
-                  </div>
+
+
                   {article.citations.length > 0 && (
                     <div className="mt-4">
                       <h4 className="font-semibold text-sm mb-2">References:</h4>
@@ -602,13 +602,13 @@ Studies show that pet therapy can reduce the need for pain medication and improv
                           <p className="text-xs text-muted-foreground">+ {article.citations.length - 2} more references</p>
                         )}
                       </div>
-                    </div>
+
                   )}
-                </CardContent>
+
               </Card>
             ))}
           </div>
-        </div>
+
 
         {/* Call to Action */}
         <div className="text-center mt-16 mb-8">
@@ -617,17 +617,16 @@ Studies show that pet therapy can reduce the need for pain medication and improv
             <p className="text-lg text-muted-foreground mb-6">
               Use these research-backed strategies to enhance happiness and well-being in senior care.
             </p>
-            <Button 
+
               onClick={() => onNavigate('register')}
-              className="btn-silver text-lg px-8 py-4"
+
             >
-              Sign Up to Connect Today
+
             </Button>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
 
-export default SeniorResourcesPage
+
+  )
+
+
