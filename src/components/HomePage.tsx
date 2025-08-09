@@ -3,12 +3,15 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Users, Heart, Phone, Sparkles } from '@phosphor-icons/react'
 import Logo from '@/components/Logo'
+import type { TranslationContent } from '@/lib/translations'
 
 interface HomePageProps {
   onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
+  language: 'en' | 'es' | 'zh'
+  t: TranslationContent
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+const HomePage: React.FC<HomePageProps> = ({ onNavigate, language, t }) => {
   const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => {
     try {
       onNavigate(page)
@@ -36,18 +39,18 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               color: 'transparent'
             }}
           >
-            Bridging Hearts Across Distance
+            {t.tagline}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Technology shouldn't be a barrier to love. We bring all the tech—our equipment, our setup. 
-            Seniors just bring their face and smiles.
+            {t.problemStatement}
           </p>
           <Button 
             size="lg" 
             className="btn-blue text-lg px-8 py-6 font-semibold"
             onClick={() => handleNavigation('register')}
+            aria-label={t.signUpCTA}
           >
-            Connect Your Loved One Today
+            {t.signUpCTA}
             <ArrowRight size={20} className="ml-2" />
           </Button>
         </section>
@@ -68,13 +71,16 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   textShadow: 'var(--text-shadow-silver)'
                 }}
               >
-                The Challenge
+                {language === 'es' ? 'El Desafío' : language === 'zh' ? '挑战' : 'The Challenge'}
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Loneliness affects 60% of seniors in care facilities. Limited tech access 
-                disconnects them from families when they need connection most.
+                {t.problemStatement}
               </p>
-              <p className="text-sm text-muted-foreground mt-4 italic">Source: AARP Research</p>
+              <p className="text-sm text-muted-foreground mt-4 italic">
+                {language === 'es' ? 'Fuente: Investigación AARP' : 
+                 language === 'zh' ? '来源：AARP 研究' : 
+                 'Source: AARP Research'}
+              </p>
             </CardContent>
           </Card>
 
@@ -93,11 +99,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   textShadow: 'var(--text-shadow-silver)'
                 }}
               >
-                Our Solution
+                {t.solutionTitle}
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We handle everything technical. Professional setup, easy connections via video calls, 
-                WhatsApp, or social media with packages tailored to your family's needs.
+                {t.solutionDescription}
               </p>
             </CardContent>
           </Card>
@@ -117,11 +122,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   textShadow: 'var(--text-shadow-silver)'
                 }}
               >
-                The Impact
+                {t.impactTitle}
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Reduces isolation, strengthens family bonds, and creates priceless, heartwarming 
-                moments for seniors and their loved ones.
+                {t.impactDescription}
               </p>
             </CardContent>
           </Card>
@@ -138,19 +142,25 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               textShadow: 'var(--text-shadow-silver)'
             }}
           >
-            Ready to Reconnect?
+            {language === 'es' ? '¿Listo para Reconectar?' : 
+             language === 'zh' ? '准备重新连接？' : 
+             'Ready to Reconnect?'}
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join families who've already discovered the joy of effortless connection. 
-            Your loved one is just one call away from feeling closer to home.
+            {language === 'es' ? 'Únete a las familias que ya han descubierto la alegría de la conexión sin esfuerzo. Tu ser querido está a solo una llamada de sentirse más cerca de casa.' :
+             language === 'zh' ? '加入已经发现轻松连接快乐的家庭。您的亲人距离感受到家的温暖只有一通电话的距离。' :
+             'Join families who\'ve already discovered the joy of effortless connection. Your loved one is just one call away from feeling closer to home.'}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
               className="btn-silver text-lg px-8 py-6 font-semibold"
               onClick={() => handleNavigation('register')}
+              aria-label={t.signUpCTA}
             >
-              Start Connecting Today
+              {language === 'es' ? 'Comienza a Conectar Hoy' :
+               language === 'zh' ? '今天开始连接' :
+               'Start Connecting Today'}
               <ArrowRight size={20} className="ml-2" />
             </Button>
             <Button 
@@ -158,23 +168,28 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               variant="outline"
               className="text-lg px-8 py-6 border-2 border-border hover:bg-secondary/50 transition-all duration-300"
               onClick={() => handleNavigation('gallery')}
+              aria-label={t.galleryTitle}
             >
-              See Happy Moments
+              {language === 'es' ? 'Ver Momentos Felices' :
+               language === 'zh' ? '查看快乐时光' :
+               'See Happy Moments'}
             </Button>
             <Button 
               size="lg" 
               className="btn-blue text-lg px-8 py-6 font-semibold"
               onClick={() => handleNavigation('senior-resources')}
+              aria-label={t.seniorResources}
             >
               <Sparkles size={20} className="mr-2" />
-              Senior Happiness & Engagement Resources
+              {t.seniorResources}
             </Button>
             <Button 
               size="lg" 
               className="btn-silver text-lg px-8 py-6 font-semibold"
               onClick={() => handleNavigation('learn-more')}
+              aria-label={t.learnMore}
             >
-              Learn More About Our Research
+              {t.learnMore}
             </Button>
           </div>
         </section>

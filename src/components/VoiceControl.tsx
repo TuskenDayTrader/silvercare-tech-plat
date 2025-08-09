@@ -6,9 +6,10 @@ import { toast } from 'sonner'
 interface VoiceControlProps {
   onCommand: (command: string) => void
   isActive?: boolean
+  language?: 'en' | 'es' | 'zh'
 }
 
-const VoiceControl: React.FC<VoiceControlProps> = ({ onCommand, isActive = true }) => {
+const VoiceControl: React.FC<VoiceControlProps> = ({ onCommand, isActive = true, language = 'en' }) => {
   const [isListening, setIsListening] = useState(false)
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
 
@@ -20,11 +21,15 @@ const VoiceControl: React.FC<VoiceControlProps> = ({ onCommand, isActive = true 
         
         recognitionInstance.continuous = false
         recognitionInstance.interimResults = false
-        recognitionInstance.lang = 'en-US'
+        // Set language based on prop
+        recognitionInstance.lang = language === 'es' ? 'es-ES' : language === 'zh' ? 'zh-CN' : 'en-US'
 
         recognitionInstance.onstart = () => {
           setIsListening(true)
-          toast.info('Listening... Speak your command')
+          const message = language === 'es' ? 'Escuchando... Diga su comando' : 
+                         language === 'zh' ? '正在聆听...请说出您的命令' : 
+                         'Listening... Speak your command'
+          toast.info(message)
         }
 
         recognitionInstance.onresult = (event) => {

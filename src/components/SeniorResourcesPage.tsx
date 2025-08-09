@@ -7,9 +7,12 @@ import { Heart, Music, Users, Sparkles, Brain, Smile, ArrowLeft, Plus, Edit, Tra
 import { useKV } from '@github/spark/hooks'
 import Logo from '@/components/Logo'
 import AdminPanel from '@/components/AdminPanel'
+import type { TranslationContent } from '@/lib/translations'
 
 interface NavigationProps {
   onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'admin') => void
+  language: 'en' | 'es' | 'zh'
+  t: TranslationContent
 }
 
 interface Article {
@@ -23,7 +26,7 @@ interface Article {
   featured: boolean
 }
 
-const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate }) => {
+const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, t }) => {
   const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
   const [showAdmin, setShowAdmin] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')

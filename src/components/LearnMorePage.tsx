@@ -2,12 +2,15 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Heart, Users, Phone, Video, Home, UserPlus, ArrowLeft, Shield, Lightbulb } from '@phosphor-icons/react'
+import type { TranslationContent } from '@/lib/translations'
 
 interface LearnMorePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void;
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
+  language: 'en' | 'es' | 'zh'
+  t: TranslationContent
 }
 
-const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate }) => {
+const LearnMorePage: React.FC<LearnMorePageProps> = ({ onNavigate, language, t }) => {
   const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => {
     try {
       onNavigate(page)

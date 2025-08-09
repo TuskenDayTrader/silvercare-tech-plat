@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Toaster } from '@/components/ui/sonner'
 import VoiceControl from '@/components/VoiceControl'
 import HomePage from '@/components/HomePage'
@@ -7,11 +7,40 @@ import GalleryPage from '@/components/GalleryPage'
 import LearnMorePage from '@/components/LearnMorePage'
 import SeniorResourcesPage from '@/components/SeniorResourcesPage'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import AccessibilityPanel from '@/components/AccessibilityPanel'
+import SignLanguageInterpreter from '@/components/SignLanguageInterpreter'
+import { useAccessibility } from '@/hooks/useAccessibility'
+import { useTranslation } from '@/lib/translations'
 
 type Page = 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
+  const { settings, speakText } = useAccessibility()
+  const { t } = useTranslation(settings.language)
+  const [subtitleText, setSubtitleText] = useState('')
+  const [showSubtitles, setShowSubtitles] = useState(false)
+
+  // Handle subtitle display
+  useEffect(() => {
+    if (settings.subtitles && subtitleText) {
+      setShowSubtitles(true)
+      const timer = setTimeout(() => setShowSubtitles(false), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [subtitleText, settings.subtitles])
+
+  // Auto-read page content when autoRead is enabled
+  useEffect(() => {
+    if (settings.autoRead) {
+      const timer = setTimeout(() => {
+        const pageContent = document.querySelector('main')?.textContent || ''
+        const firstParagraph = pageContent.split('.')[0] + '.'
+        speakText(firstParagraph)
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [currentPage, settings.autoRead, speakText])
 
   // Safe navigation handler with validation and error boundary
   const handleNavigation = (page: Page) => {
@@ -36,22 +65,37 @@ function App() {
     try {
       const lowerCommand = command.toLowerCase()
       
-      if (lowerCommand.includes('home') || lowerCommand.includes('go home')) {
+      // Set subtitle text for voice commands
+      if (settings.subtitles) {
+        setSubtitleText(`Voice command: "${command}"`)
+      }
+      
+      // Multi-language voice command support
+      const homeCommands = ['home', 'go home', 'inicio', 'ir a inicio', '首页', '回到首页']
+      const registerCommands = ['register', 'sign up', 'connect', 'registrar', 'conectar', '注册', '连接']
+      const galleryCommands = ['gallery', 'moments', 'photos', 'galería', 'momentos', 'fotos', '画廊', '照片', '时光']
+      const learnCommands = ['learn more', 'information', 'research', 'aprender más', 'información', '了解更多', '信息']
+      const resourceCommands = ['senior resources', 'happiness', 'engagement', 'recursos', 'felicidad', '资源', '幸福']
+      
+      if (homeCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('home')
-      } else if (lowerCommand.includes('register') || lowerCommand.includes('sign up') || lowerCommand.includes('connect')) {
+      } else if (registerCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('register')
-      } else if (lowerCommand.includes('gallery') || lowerCommand.includes('moments') || lowerCommand.includes('photos')) {
+      } else if (galleryCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('gallery')
-      } else if (lowerCommand.includes('learn more') || lowerCommand.includes('information') || lowerCommand.includes('research')) {
+      } else if (learnCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('learn-more')
-      } else if (lowerCommand.includes('senior resources') || lowerCommand.includes('happiness') || lowerCommand.includes('engagement')) {
+      } else if (resourceCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('senior-resources')
-      } else if (lowerCommand.includes('scroll down') || lowerCommand.includes('scroll')) {
+      } else if (lowerCommand.includes('scroll down') || lowerCommand.includes('scroll') || lowerCommand.includes('bajar') || lowerCommand.includes('向下滚动')) {
         window.scrollBy({ top: 300, behavior: 'smooth' })
-      } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top')) {
+      } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top') || lowerCommand.includes('arriba') || lowerCommand.includes('向上滚动')) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       } else {
         console.log(`Unrecognized voice command: ${command}`)
+        if (settings.subtitles) {
+          setSubtitleText('Command not recognized. Try saying "home", "register", "gallery", or "learn more".')
+        }
       }
     } catch (error) {
       console.error('Voice command processing error:', error)
@@ -61,33 +105,75 @@ function App() {
 
   const renderPage = () => {
     try {
+      const pageProps = {
+        onNavigate: handleNavigation,
+        language: settings.language,
+        t
+      }
+      
       switch (currentPage) {
         case 'home':
-          return <HomePage onNavigate={handleNavigation} />
+          return <HomePage {...pageProps} />
         case 'register':
-          return <RegistrationPage onNavigate={handleNavigation} />
+          return <RegistrationPage {...pageProps} />
         case 'gallery':
-          return <GalleryPage onNavigate={handleNavigation} />
+          return <GalleryPage {...pageProps} />
         case 'learn-more':
-          return <LearnMorePage onNavigate={handleNavigation} />
+          return <LearnMorePage {...pageProps} />
         case 'senior-resources':
-          return <SeniorResourcesPage onNavigate={handleNavigation} />
+          return <SeniorResourcesPage {...pageProps} />
         default:
           // Fallback to home page if invalid page state
           handleNavigation('home')
-          return <HomePage onNavigate={handleNavigation} />
+          return <HomePage {...pageProps} />
       }
     } catch (error) {
       console.error('Page rendering error:', error)
       // Fallback to home page on any rendering error
-      return <HomePage onNavigate={handleNavigation} />
+      return <HomePage onNavigate={handleNavigation} language={settings.language} t={t} />
     }
   }
 
   return (
     <ErrorBoundary onNavigateHome={() => handleNavigation('home')}>
-      {renderPage()}
-      <VoiceControl onCommand={handleVoiceCommand} />
+      {/* Skip link for screen readers */}
+      <a href="#main-content" className="skip-link">
+        {t.language === 'es' ? 'Ir al contenido principal' : 
+         t.language === 'zh' ? '跳转到主要内容' : 
+         'Skip to main content'}
+      </a>
+      
+      {/* ARIA live region for announcements */}
+      <div id="aria-announcements" className="sr-only" aria-live="polite" aria-atomic="true"></div>
+      
+      {/* Main content */}
+      <main id="main-content" tabIndex={-1}>
+        {renderPage()}
+      </main>
+      
+      {/* Accessibility Panel */}
+      <AccessibilityPanel onLanguageChange={(language) => {
+        // Handle any additional language change logic if needed
+        console.log('Language changed to:', language)
+      }} />
+      
+      {/* Voice Control */}
+      <VoiceControl onCommand={handleVoiceCommand} language={settings.language} />
+      
+      {/* Subtitle overlay */}
+      {showSubtitles && subtitleText && (
+        <div className="subtitle-overlay" role="status" aria-live="polite">
+          {subtitleText}
+        </div>
+      )}
+      
+      {/* Sign language interpreter overlay */}
+      <SignLanguageInterpreter 
+        isActive={settings.signLanguage} 
+        language={settings.language} 
+      />
+      
+      {/* Toast notifications */}
       <Toaster position="top-center" richColors />
     </ErrorBoundary>
   )

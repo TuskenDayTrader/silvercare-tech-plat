@@ -191,3 +191,175 @@ p, span, div {
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
+
+/* High contrast mode for accessibility */
+.high-contrast {
+  --background-solid: #ffffff !important;
+  --foreground: #000000 !important;
+  --primary-solid: #0000ff !important;
+  --primary-foreground: #ffffff !important;
+  --secondary-solid: #ffffff !important;
+  --secondary-foreground: #000000 !important;
+  --muted: #f0f0f0 !important;
+  --muted-foreground: #000000 !important;
+  --accent-solid: #0066cc !important;
+  --accent-foreground: #ffffff !important;
+  --border: #000000 !important;
+  --input: #ffffff !important;
+  --card-solid: #ffffff !important;
+  --card-foreground: #000000 !important;
+}
+
+.high-contrast * {
+  border-color: #000000 !important;
+}
+
+.high-contrast button {
+  border: 2px solid #000000 !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast .btn-silver,
+.high-contrast .btn-blue {
+  background: #0000ff !important;
+  color: #ffffff !important;
+  border: 3px solid #000000 !important;
+}
+
+.high-contrast .premium-card {
+  border: 2px solid #000000 !important;
+  background: #ffffff !important;
+}
+
+/* Reduced motion for accessibility */
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  transition-delay: 0ms !important;
+}
+
+.reduced-motion *:hover {
+  transform: none !important;
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--ring) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-solid);
+  color: var(--primary-foreground);
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* ARIA live regions */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Sign language interpreter overlay */
+.sign-language-overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--primary-solid);
+  border-radius: var(--radius);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+/* Subtitle overlay */
+.subtitle-overlay {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  max-width: 80%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 1000;
+  line-height: 1.4;
+}
+
+/* Ensure all interactive elements have proper sizing for motor accessibility */
+button, 
+input, 
+select, 
+textarea, 
+[role="button"],
+[role="link"] {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 16px;
+}
+
+/* Enhanced button styles for accessibility */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(74, 144, 226, 0.2);
+}
+
+/* Large text support */
+html[style*="font-size: 22px"] {
+  line-height: 1.7;
+}
+
+html[style*="font-size: 26px"] {
+  line-height: 1.8;
+}
+
+html[style*="font-size: 22px"] button,
+html[style*="font-size: 26px"] button {
+  min-height: 56px;
+  padding: 16px 24px;
+}
+
+/* Ensure form elements scale properly */
+html[style*="font-size: 22px"] input,
+html[style*="font-size: 22px"] select,
+html[style*="font-size: 22px"] textarea,
+html[style*="font-size: 26px"] input,
+html[style*="font-size: 26px"] select,
+html[style*="font-size: 26px"] textarea {
+  min-height: 56px;
+  padding: 16px;
+  font-size: inherit;
+}
