@@ -1,5 +1,7 @@
 // Email service utility for SilverCare Tech
-// This simulates email functionality - in production, use a service like SendGrid, Nodemailer, etc.
+// This simulates email functionality in the browser environment
+// In production, replace with actual email service API calls (SendGrid, Resend, etc.)
+// Note: Removed process.env dependency for browser compatibility
 
 export interface EmailData {
   to: string
@@ -20,12 +22,17 @@ export interface BookingNotificationData {
 }
 
 class EmailService {
-  private apiKey: string = process.env.SENDGRID_API_KEY || 'demo-key'
-  private fromEmail: string = 'noreply@silvercaretech.com'
+  private readonly apiKey: string = 'demo-key' // In production, this would be configured server-side
+  private readonly fromEmail: string = 'noreply@silvercaretech.com'
 
   // Simulate sending email (replace with actual email service in production)
   async sendEmail(emailData: EmailData): Promise<{ success: boolean; error?: string }> {
     try {
+      // Validate input data
+      if (!emailData.to || !emailData.subject) {
+        throw new Error('Email validation failed: Missing required fields (to, subject)')
+      }
+
       console.log('📧 Email Service - Sending email:', {
         to: emailData.to,
         subject: emailData.subject,
