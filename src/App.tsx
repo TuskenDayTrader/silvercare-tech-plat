@@ -6,17 +6,22 @@ import RegistrationPage from '@/components/RegistrationPage'
 import GalleryPage from '@/components/GalleryPage'
 import LearnMorePage from '@/components/LearnMorePage'
 import SeniorResourcesPage from '@/components/SeniorResourcesPage'
+import AuthPage from '@/components/AuthPage'
+import BookingPage from '@/components/BookingPage'
+import AdminDashboard from '@/components/AdminDashboard'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import AccessibilityPanel from '@/components/AccessibilityPanel'
 import SignLanguageInterpreter from '@/components/SignLanguageInterpreter'
 import { useAccessibility } from '@/hooks/useAccessibility'
+import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/lib/translations'
 
-type Page = 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources'
+type Page = 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'auth' | 'booking' | 'admin-dashboard'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const { settings, speakText } = useAccessibility()
+  const { user, isAuthenticated, isAdmin } = useAuth()
   const { t } = useTranslation(settings.language)
   const [subtitleText, setSubtitleText] = useState('')
   const [showSubtitles, setShowSubtitles] = useState(false)
@@ -45,7 +50,7 @@ function App() {
   // Safe navigation handler with validation and error boundary
   const handleNavigation = (page: Page) => {
     try {
-      const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more', 'senior-resources']
+      const validPages: Page[] = ['home', 'register', 'gallery', 'learn-more', 'senior-resources', 'auth', 'booking', 'admin-dashboard']
       if (validPages.includes(page)) {
         setCurrentPage(page)
         // Scroll to top when navigating to a new page
@@ -76,6 +81,9 @@ function App() {
       const galleryCommands = ['gallery', 'moments', 'photos', 'galería', 'momentos', 'fotos', '画廊', '照片', '时光']
       const learnCommands = ['learn more', 'information', 'research', 'aprender más', 'información', '了解更多', '信息']
       const resourceCommands = ['senior resources', 'happiness', 'engagement', 'recursos', 'felicidad', '资源', '幸福']
+      const authCommands = ['login', 'sign in', 'account', 'iniciar sesión', 'cuenta', '登录', '账户']
+      const bookingCommands = ['booking', 'schedule', 'appointment', 'reserva', 'cita', '预约', '安排']
+      const adminCommands = ['admin', 'dashboard', 'administrador', 'panel', '管理员', '仪表板']
       
       if (homeCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('home')
@@ -87,6 +95,20 @@ function App() {
         handleNavigation('learn-more')
       } else if (resourceCommands.some(cmd => lowerCommand.includes(cmd))) {
         handleNavigation('senior-resources')
+      } else if (authCommands.some(cmd => lowerCommand.includes(cmd))) {
+        handleNavigation('auth')
+      } else if (bookingCommands.some(cmd => lowerCommand.includes(cmd))) {
+        if (isAuthenticated) {
+          handleNavigation('booking')
+        } else {
+          handleNavigation('auth')
+        }
+      } else if (adminCommands.some(cmd => lowerCommand.includes(cmd))) {
+        if (isAdmin) {
+          handleNavigation('admin-dashboard')
+        } else {
+          handleNavigation('auth')
+        }
       } else if (lowerCommand.includes('scroll down') || lowerCommand.includes('scroll') || lowerCommand.includes('bajar') || lowerCommand.includes('向下滚动')) {
         window.scrollBy({ top: 300, behavior: 'smooth' })
       } else if (lowerCommand.includes('scroll up') || lowerCommand.includes('top') || lowerCommand.includes('arriba') || lowerCommand.includes('向上滚动')) {
@@ -94,7 +116,7 @@ function App() {
       } else {
         console.log(`Unrecognized voice command: ${command}`)
         if (settings.subtitles) {
-          setSubtitleText('Command not recognized. Try saying "home", "register", "gallery", or "learn more".')
+          setSubtitleText('Command not recognized. Try saying "home", "register", "gallery", "learn more", "login", "booking", or "admin".')
         }
       }
     } catch (error) {
@@ -122,6 +144,12 @@ function App() {
           return <LearnMorePage {...pageProps} />
         case 'senior-resources':
           return <SeniorResourcesPage {...pageProps} />
+        case 'auth':
+          return <AuthPage {...pageProps} />
+        case 'booking':
+          return <BookingPage {...pageProps} />
+        case 'admin-dashboard':
+          return <AdminDashboard {...pageProps} />
         default:
           // Fallback to home page if invalid page state
           handleNavigation('home')

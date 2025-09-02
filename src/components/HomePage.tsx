@@ -6,13 +6,13 @@ import Logo from '@/components/Logo'
 import type { TranslationContent } from '@/lib/translations'
 
 interface HomePageProps {
-  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => void
+  onNavigate: (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'auth' | 'booking' | 'admin-dashboard') => void
   language: 'en' | 'es' | 'zh'
   t: TranslationContent
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, language, t }) => {
-  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources') => {
+  const handleNavigation = (page: 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'auth' | 'booking' | 'admin-dashboard') => {
     try {
       onNavigate(page)
     } catch (error) {
@@ -44,15 +44,26 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, language, t }) => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             {t.problemStatement}
           </p>
-          <Button 
-            size="lg" 
-            className="btn-blue text-lg px-8 py-6 font-semibold"
-            onClick={() => handleNavigation('register')}
-            aria-label={t.signUpCTA}
-          >
-            {t.signUpCTA}
-            <ArrowRight size={20} className="ml-2" />
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="btn-blue text-lg px-8 py-6 font-semibold"
+              onClick={() => handleNavigation('auth')}
+              aria-label={language === 'es' ? 'Programar Conexión' : language === 'zh' ? '安排连接' : 'Schedule Connection'}
+            >
+              {language === 'es' ? 'Programar Conexión' : language === 'zh' ? '安排连接' : 'Schedule Connection'}
+              <ArrowRight size={20} className="ml-2" />
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 py-6 font-semibold border-2 hover:bg-secondary/50"
+              onClick={() => handleNavigation('register')}
+              aria-label={t.signUpCTA}
+            >
+              {t.signUpCTA}
+            </Button>
+          </div>
         </section>
 
         <section className="grid md:grid-cols-3 gap-8 mb-16">
