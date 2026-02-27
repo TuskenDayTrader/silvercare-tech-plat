@@ -1,29 +1,21 @@
-# README
+# SilverCare Connect
 
-## Business Name
-SilverCare Connect
+**Value Proposition**: SilverCare Connect offers a comprehensive platform designed to enhance the lives of seniors by connecting them with essential services and support.
 
-## Pilot Offer
-Family Connect Session
-- Intro pilot session: $15 one-time per family
-- Standard rate: $29
-- Repeat sessions: $20 each for additional sessions in the same calendar month
+## Pilot Offer/Pricing
+- Introductory pricing: $15
+- Standard pricing: $29
+- Additional services in the same month: $20
 
 ## Pilot Radius
-Within 20 miles of coordinates: 27.9123, -82.6891
+- Service available within a specified radius of the pilot area.
 
 ## Availability
-Monday/Tuesday/Wednesday 8:00 AM–8:00 PM
+- Services available every day from 8 AM to 8 PM.
 
 ## Cancellation Policy
-24-hour cancellation policy
+- Easy cancellation available within the first 30 days. 
 
-## Step 1-3 Plan
-1. Initial consultation
-2. Family assessment
-3. Scheduling sessions
-
-## Technical Stack
-(Existing technical stack information preserved here) 
-
-*Note: Current site is a pilot booking/ops prototype. Previous default working hours have been updated to reflect actual availability.*
+## Links
+- [Technical Documentation](docs/TECHNICAL.md)
+- [PRD Document](PRD.md)
