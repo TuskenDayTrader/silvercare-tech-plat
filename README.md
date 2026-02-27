@@ -1,21 +1,24 @@
-# SilverCare Connect
+# Technical README
 
-**Value Proposition**: SilverCare Connect offers a comprehensive platform designed to enhance the lives of seniors by connecting them with essential services and support.
+## Overview
+This project is designed to provide a health management platform through connected services.
 
-## Pilot Offer/Pricing
-- Introductory pricing: $15
-- Standard pricing: $29
-- Additional services in the same month: $20
+## Features
+- Secure Family Connections
+- Real-time Health Monitoring
+- Data Privacy Assurance
 
-## Pilot Radius
-- Service available within a specified radius of the pilot area.
+# Pilot Business Summary
 
-## Availability
-- Services available every day from 8 AM to 8 PM.
+## SilverCare Connect
+Introducing SilverCare Connect, an innovative service designed to assist families in managing their health. We offer Family Connect Sessions to engage with our services and ensure a personalized approach to health management.
 
-## Cancellation Policy
-- Easy cancellation available within the first 30 days. 
+### Pricing
+- $15 for an introductory one-time session per family
+- $29 for standard sessions
+- $20 for additional sessions within the same month
 
-## Links
-- [Technical Documentation](docs/TECHNICAL.md)
-- [PRD Document](PRD.md)
+### Pilot Details
+- **Service Radius:** Available within a 20-mile radius of coordinates (27.9123, -82.6891)
+- **Availability:** Monday to Wednesday, from 8 AM to 8 PM
+- **Cancellation Policy:** 24-hour notice required for cancellations.
