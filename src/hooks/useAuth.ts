@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useKV } from '@github/spark/hooks'
+import { useAppKV } from '@/hooks/useAppKV'
 
 export interface User {
   id: string
@@ -17,8 +17,8 @@ export interface AuthState {
 }
 
 export function useAuth() {
-  const [currentUser, setCurrentUser] = useKV<User | null>('currentUser', null)
-  const [users, setUsers] = useKV<User[]>('users', [])
+  const [currentUser, setCurrentUser] = useAppKV<User | null>('currentUser', null)
+  const [users, setUsers] = useAppKV<User[]>('users', [])
   const [isLoading, setIsLoading] = useState(false)
 
   // Initialize admin user if none exists

@@ -9,7 +9,7 @@ import { Calendar as CalendarComponent } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ArrowLeft, Check, Calendar, User, MapPin, Mail, Clock, CalendarBlank } from '@phosphor-icons/react'
 import { toast } from 'sonner'
-import { useKV } from '@github/spark/hooks'
+import { useAppKV } from '@/hooks/useAppKV'
 import Logo from '@/components/Logo'
 import type { TranslationContent } from '@/lib/translations'
 import { format } from 'date-fns'
@@ -42,7 +42,7 @@ interface RegistrationErrors {
 }
 
 const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate, language, t }) => {
-  const [registrations, setRegistrations] = useKV<RegistrationData[]>('registrations', [])
+  const [registrations, setRegistrations] = useAppKV<RegistrationData[]>('registrations', [])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState<RegistrationData>({
     familyMemberName: '',
