@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { ArrowLeft, Calendar, Clock, User, MapPin, Check, ChevronLeft, ChevronRight } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/useAuth'
-import { useAppKV } from '@/hooks/useAppKV'
+import { useKV } from '@github/spark/hooks'
 import { emailService } from '@/lib/emailService'
 import Logo from '@/components/Logo'
 import type { TranslationContent } from '@/lib/translations'
@@ -47,8 +47,8 @@ interface AdminSettings {
 
 const BookingPage: React.FC<BookingPageProps> = ({ onNavigate, language, t }) => {
   const { user, isAuthenticated } = useAuth()
-  const [bookings, setBookings] = useAppKV<Booking[]>('bookings', [])
-  const [adminSettings, setAdminSettings] = useAppKV<AdminSettings>('adminSettings', {
+  const [bookings, setBookings] = useKV<Booking[]>('bookings', [])
+  const [adminSettings, setAdminSettings] = useKV<AdminSettings>('adminSettings', {
     workingHours: { start: '07:00', end: '18:00' },
     timeSlotDuration: 30,
     maxAdvanceBookingDays: 30,

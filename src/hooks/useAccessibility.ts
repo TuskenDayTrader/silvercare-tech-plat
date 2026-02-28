@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useAppKV } from '@/hooks/useAppKV'
+import { useKV } from '@github/spark/hooks'
 
 // Accessibility settings interface
 export interface AccessibilitySettings {
@@ -28,7 +28,7 @@ const defaultSettings: AccessibilitySettings = {
 }
 
 export function useAccessibility() {
-  const [settings, setSettings, deleteSettings] = useAppKV<AccessibilitySettings>('accessibility-settings', defaultSettings)
+  const [settings, setSettings, deleteSettings] = useKV<AccessibilitySettings>('accessibility-settings', defaultSettings)
   const [isReading, setIsReading] = useState(false)
 
   // Apply accessibility settings to document

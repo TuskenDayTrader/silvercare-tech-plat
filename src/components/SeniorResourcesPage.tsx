@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Plus, Edit, Trash2, ExternalLink, Heart, Users, Music, Dog, Brain, Smile, ArrowLeft, Shield } from '@phosphor-icons/react'
-import { useAppKV } from '@/hooks/useAppKV'
+import { useKV } from '@github/spark/hooks'
 import { toast } from 'sonner'
 
 interface Article {
@@ -30,7 +30,7 @@ interface NavigationProps {
 }
 
 const SeniorResourcesPage: React.FC<NavigationProps> = ({ onNavigate, language, t }) => {
-  const [articles, setArticles] = useAppKV<Article[]>('senior-resources-articles', [])
+  const [articles, setArticles] = useKV<Article[]>('senior-resources-articles', [])
   const [showAdminPanel, setShowAdminPanel] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [editingId, setEditingId] = useState<string | null>(null)

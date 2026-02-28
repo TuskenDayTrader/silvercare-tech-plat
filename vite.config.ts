@@ -8,17 +8,14 @@ import { resolve } from 'path'
 
 const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
-const isDemoMode = process.env.VITE_DEMO_MODE === 'true'
-
 // https://vite.dev/config/
 export default defineConfig({
-  base: isDemoMode ? '/silvercare-tech-plat/' : '/',
   plugins: [
     react(),
     tailwindcss(),
     // DO NOT REMOVE
     createIconImportProxy() as PluginOption,
-    ...(isDemoMode ? [] : [sparkPlugin() as PluginOption]),
+    sparkPlugin() as PluginOption,
   ],
   resolve: {
     alias: {

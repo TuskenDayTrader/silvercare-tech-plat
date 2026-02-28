@@ -15,7 +15,6 @@ import SignLanguageInterpreter from '@/components/SignLanguageInterpreter'
 import { useAccessibility } from '@/hooks/useAccessibility'
 import { useAuth } from '@/hooks/useAuth'
 import { useTranslation } from '@/lib/translations'
-import DemoBanner from '@/components/DemoBanner'
 
 type Page = 'home' | 'register' | 'gallery' | 'learn-more' | 'senior-resources' | 'auth' | 'booking' | 'admin-dashboard'
 
@@ -174,9 +173,6 @@ function App() {
       
       {/* ARIA live region for announcements */}
       <div id="aria-announcements" className="sr-only" aria-live="polite" aria-atomic="true"></div>
-      
-      {/* Demo banner */}
-      {import.meta.env.VITE_DEMO_MODE === 'true' && <DemoBanner />}
       
       {/* Main content */}
       <main id="main-content" tabIndex={-1}>

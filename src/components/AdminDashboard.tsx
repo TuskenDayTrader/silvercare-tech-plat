@@ -25,7 +25,7 @@ import {
 } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/useAuth'
-import { useAppKV } from '@/hooks/useAppKV'
+import { useKV } from '@github/spark/hooks'
 import { emailService } from '@/lib/emailService'
 import Logo from '@/components/Logo'
 import type { TranslationContent } from '@/lib/translations'
@@ -70,14 +70,14 @@ interface GalleryImage {
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate, language, t }) => {
   const { user, isAdmin, logout } = useAuth()
-  const [bookings, setBookings] = useAppKV<Booking[]>('bookings', [])
-  const [adminSettings, setAdminSettings] = useAppKV<AdminSettings>('adminSettings', {
+  const [bookings, setBookings] = useKV<Booking[]>('bookings', [])
+  const [adminSettings, setAdminSettings] = useKV<AdminSettings>('adminSettings', {
     workingHours: { start: '07:00', end: '18:00' },
     timeSlotDuration: 30,
     maxAdvanceBookingDays: 30,
     adminEmail: 'admin@silvercaretech.com'
   })
-  const [galleryImages, setGalleryImages] = useAppKV<GalleryImage[]>('galleryImages', [])
+  const [galleryImages, setGalleryImages] = useKV<GalleryImage[]>('galleryImages', [])
   
   const [activeTab, setActiveTab] = useState('overview')
   const [editingSettings, setEditingSettings] = useState(false)
